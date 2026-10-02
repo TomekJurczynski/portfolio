@@ -44,7 +44,7 @@
   right: max(16px, env(safe-area-inset-right));
   bottom: max(16px, env(safe-area-inset-bottom));
   z-index: 90;
-  width: 380px;
+  width: 420px;
   height: min(560px, 100vh - 32px);
   background: var(--raised);
   border: 1px solid var(--border);
@@ -201,6 +201,28 @@
   font-style: italic;
 }
 
+.chat-msg__speak {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-top: var(--space-1);
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-subtle);
+  cursor: pointer;
+}
+.chat-msg__speak:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+.chat-msg__speak--active {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent);
+}
+
 .chat-cursor {
   display: inline-block;
   width: 2px;
@@ -316,9 +338,9 @@
 
 .chat-input {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-3) var(--space-5);
   border-top: 1px solid var(--border);
   flex-shrink: 0;
 }
@@ -327,6 +349,12 @@
   flex: 1;
 }
 .chat-input textarea {
+  /* A <textarea> defaults to inline-block, so as inline content its wrapper
+     reserves extra space below it for the font's descender — inflating
+     .chat-input__field (and with it the whole row) past the textarea's own
+     40px and throwing off centering against the 40px buttons. Block removes
+     that reserved gap entirely. */
+  display: block;
   width: 100%;
   resize: none;
   border: 1px solid var(--border-strong);
@@ -337,9 +365,30 @@
   color: var(--text);
   background: var(--bg);
   min-height: 40px;
-  max-height: calc(4 * 24px + 16px);
-  line-height: 1.5;
-  overflow-y: auto;
+  max-height: calc(4 * 22px + 16px);
+  /* Fixed px, not a relative multiplier: with the 8px vertical padding and 1px
+     border this resolves to exactly 40px for one line (22 + 16 + 2), matching
+     the 40px buttons with no sub-pixel rounding to center against. */
+  line-height: 22px;
+  /* Hidden by default — JS only switches this to 'auto' once content truly
+     exceeds the 4-line max-height, so a stray sub-pixel rounding at 1-4 lines
+     never triggers a scrollbar. Styled to match .chat-messages for when it does. */
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+.chat-input textarea::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-input textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-input textarea::-webkit-scrollbar-thumb {
+  background-color: var(--border-strong);
+  border-radius: 999px;
+}
+.chat-input textarea::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent);
 }
 .chat-input textarea:focus-visible {
   outline: 2px solid var(--accent);
@@ -347,6 +396,11 @@
 }
 .chat-input textarea:disabled {
   opacity: 0.6;
+}
+.chat-input__textarea--listening {
+  font-style: italic;
+  color: var(--text-muted);
+  border-color: var(--accent);
 }
 .chat-input__counter {
   position: absolute;
@@ -376,13 +430,53 @@
 .chat-input__send--stop {
   background: var(--danger);
 }
+.chat-voice-orb {
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+}
+.chat-voice-orb:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.chat-voice-orb canvas {
+  display: block;
+  pointer-events: none;
+}
+.chat-voice-error {
+  margin: 0 var(--space-5) var(--space-2);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
 
 .chat-disclaimer {
   margin: 0;
-  padding: var(--space-2) var(--space-5) var(--space-4);
+  padding: var(--space-3) var(--space-5) var(--space-4);
   font-size: 0.75rem;
   color: var(--text-subtle);
   flex-shrink: 0;
+}
+
+.chat-voice-hint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 var(--space-5) 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border));
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--text);
+  font-size: 0.8125rem;
+  flex-shrink: 0;
+}
+.chat-voice-hint svg {
+  flex-shrink: 0;
+  color: var(--accent);
 }
 
 .visually-hidden {

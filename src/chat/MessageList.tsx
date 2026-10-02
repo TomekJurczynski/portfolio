@@ -10,6 +10,9 @@ interface Props {
   i18n: I18n;
   messages: StoredMessage[];
   phase: ChatPhase;
+  canSpeak: boolean;
+  speakingMessageId: string | null;
+  onToggleSpeak: (message: StoredMessage) => void;
   emptyState: React.ReactNode;
 }
 
@@ -57,7 +60,15 @@ function ActionChip({ action, i18n }: { action: ChatAction; i18n: I18n }) {
   );
 }
 
-export default function MessageList({ i18n, messages, phase, emptyState }: Props) {
+export default function MessageList({
+  i18n,
+  messages,
+  phase,
+  canSpeak,
+  speakingMessageId,
+  onToggleSpeak,
+  emptyState,
+}: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const pinnedRef = useRef(true);
   const [showJumpToNew, setShowJumpToNew] = useState(false);
@@ -99,24 +110,53 @@ export default function MessageList({ i18n, messages, phase, emptyState }: Props
       >
         {messages.length === 0
           ? emptyState
-          : messages.map((m) => (
-              <div key={m.id} className={`chat-msg chat-msg--${m.role}`}>
-                <p className="chat-msg__text">
-                  {m.content}
-                  {phase === 'responding' &&
-                    m.role === 'assistant' &&
-                    m.id === messages[messages.length - 1]?.id && <span className="chat-cursor" />}
-                </p>
-                {m.interrupted && <p className="chat-msg__note">{i18n.chat.interruptedNote}</p>}
-                {m.actions && m.actions.length > 0 && (
-                  <div className="chat-actions-row">
-                    {m.actions.map((a) => (
-                      <ActionChip key={`${a.kind}:${a.id}`} action={a} i18n={i18n} />
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+          : messages.map((m) => {
+              const isStreaming =
+                phase === 'responding' && m.role === 'assistant' && m.id === messages[messages.length - 1]?.id;
+              const isSpeaking = speakingMessageId === m.id;
+              return (
+                <div key={m.id} className={`chat-msg chat-msg--${m.role}`}>
+                  <p className="chat-msg__text">
+                    {m.content}
+                    {isStreaming && <span className="chat-cursor" />}
+                  </p>
+                  {m.interrupted && <p className="chat-msg__note">{i18n.chat.interruptedNote}</p>}
+                  {m.actions && m.actions.length > 0 && (
+                    <div className="chat-actions-row">
+                      {m.actions.map((a) => (
+                        <ActionChip key={`${a.kind}:${a.id}`} action={a} i18n={i18n} />
+                      ))}
+                    </div>
+                  )}
+                  {canSpeak && m.role === 'assistant' && !isStreaming && m.content && (
+                    <button
+                      type="button"
+                      className={`chat-msg__speak${isSpeaking ? ' chat-msg__speak--active' : ''}`}
+                      onClick={() => onToggleSpeak(m)}
+                      aria-pressed={isSpeaking}
+                      aria-label={isSpeaking ? i18n.chat.stopReply : i18n.chat.playReply}
+                      title={isSpeaking ? i18n.chat.stopReply : i18n.chat.playReply}
+                    >
+                      {isSpeaking ? (
+                        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24">
+                          <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" />
+                        </svg>
+                      ) : (
+                        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none">
+                          <path
+                            d="M4 9v6h3l5 4V5L7 9H4Z"
+                            stroke="currentColor"
+                            strokeWidth="1.6"
+                            strokeLinejoin="round"
+                          />
+                          <path d="M16 9a4 4 0 0 1 0 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                        </svg>
+                      )}
+                    </button>
+                  )}
+                </div>
+              );
+            })}
       </div>
       {showJumpToNew && (
         <button type="button" className="chat-jump-new" onClick={scrollToBottom}>

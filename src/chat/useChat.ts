@@ -64,10 +64,12 @@ function runAction(action: ChatAction): void {
 export interface UseChatOptions {
   /** Called right after a nav action auto-runs (§4.3.6) — lets the UI collapse the mobile sheet. */
   onNavAction?: () => void;
+  /** Called once a reply finishes streaming, with its final marker-free text and message id — lets the UI speak it (§5.1 step 5). */
+  onAssistantMessageComplete?: (text: string, id: string) => void;
 }
 
 export function useChat(lang: 'en' | 'pl', options: UseChatOptions = {}) {
-  const { onNavAction } = options;
+  const { onNavAction, onAssistantMessageComplete } = options;
   const [messages, setMessages] = useState<StoredMessage[]>([]);
   const [phase, setPhase] = useState<ChatPhase>('ready');
   const [errorCode, setErrorCode] = useState<ChatErrorCode | null>(null);
@@ -212,6 +214,7 @@ export function useChat(lang: 'en' | 'pl', options: UseChatOptions = {}) {
               runAction(navAction);
               onNavAction?.();
             }
+            onAssistantMessageComplete?.(displayText, assistantId);
           } else {
             // Stream closed before a `done` line — either the user hit Stop, or
             // the connection genuinely dropped.
@@ -263,7 +266,7 @@ export function useChat(lang: 'en' | 'pl', options: UseChatOptions = {}) {
         }
       })();
     },
-    [lang, onNavAction, updateMessages],
+    [lang, onNavAction, onAssistantMessageComplete, updateMessages],
   );
 
   const send = useCallback(

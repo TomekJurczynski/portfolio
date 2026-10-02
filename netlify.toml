@@ -3,6 +3,12 @@
   publish = "dist"
   functions = "netlify/functions"
 
+[build.environment]
+  # Pinned to match local dev (node --version) so "builds locally" reliably means
+  # "will build on Netlify too" — the main realistic gap otherwise. pnpm version
+  # is already pinned via package.json's "packageManager" field.
+  NODE_VERSION = "22.16.0"
+
 [functions]
   node_bundler = "esbuild"
 

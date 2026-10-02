@@ -44,6 +44,7 @@
     "stop": "Stop",
     "welcome": "Hi! I'm the portfolio guide for Tomasz — ask me about his projects, stack, or experience.",
     "disclaimer": "This AI assistant answers from information about Tomasz and may get things wrong.",
+    "voiceHint": "Tip: tap the glowing orb next to the input to ask by voice.",
     "newMessages": "New messages",
     "retry": "Try again",
     "interruptedNote": "(response interrupted)",
@@ -52,6 +53,16 @@
     "errorNetwork": "Couldn't connect. Check your connection and try again.",
     "errorInterrupted": "The response was interrupted.",
     "errorGeneric": "Something went wrong.",
-    "emailFallback": "Email directly"
+    "emailFallback": "Email directly",
+    "micStart": "Speak your question",
+    "micStop": "Stop listening",
+    "playReply": "Listen to this reply",
+    "stopReply": "Stop reading",
+    "voiceErrorNotAllowed": "Microphone is blocked. Allow access in your browser settings, or type instead.",
+    "voiceErrorNoSpeech": "I didn't hear anything — try again.",
+    "voiceErrorAudioCapture": "No microphone found.",
+    "voiceErrorNetwork": "Speech recognition needs an internet connection.",
+    "voiceErrorLanguageNotSupported": "This language isn't supported for voice — type instead.",
+    "voiceErrorUnknown": "Voice input isn't working right now — type instead."
   }
 }
