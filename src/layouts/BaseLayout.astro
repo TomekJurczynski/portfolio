@@ -1,0 +1,129 @@
+---
+// Site shell: tokens, palette/theme/language bootstrapping, meta tags, chat widget.
+// Header/Footer are NOT included here — pages compose <Header>/<Footer> themselves
+// around their own section content, since each page already loads its own i18n/content.
+import '../styles/tokens.css';
+import '../styles/palettes.generated.css';
+import ChatWidget from '../chat/ChatWidget';
+
+interface Person {
+  name: string;
+  role: string;
+  sameAs: string[];
+}
+
+interface Props {
+  lang: 'en' | 'pl';
+  /** Path of this page in English, e.g. "/" or "/privacy/" (no site origin). */
+  enPath: string;
+  /** Path of this page in Polish, e.g. "/pl/" or "/pl/privacy/". */
+  plPath: string;
+  title: string;
+  description: string;
+  siteUrl: string;
+  email: string;
+  person?: Person;
+}
+
+const { lang, enPath, plPath, title, description, siteUrl, email, person } = Astro.props;
+const canonicalPath = lang === 'en' ? enPath : plPath;
+const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
+const ogImageUrl = new URL('/og/cover.png', siteUrl).toString();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>
+      // Runs before first paint to avoid a flash of the wrong theme/palette.
+      // Product decision: Cosmos-dark is THE default look (not system preference);
+      // "light mode" specifically means Baseline-light. The two used to be independent
+      // (palette × theme), now the one visible toggle (Header.astro) drives both at
+      // once. ?palette= stays as a dev-only override for comparing the non-default
+      // pairings (e.g. Cosmos-light) — see Footer.astro's PUBLIC_PALETTE_SWITCHER tool.
+      (function () {
+        try {
+          const storedTheme = localStorage.getItem('theme');
+          const theme = storedTheme === 'light' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          const params = new URLSearchParams(location.search);
+          const palette = params.get('palette') || (theme === 'light' ? 'baseline' : 'cosmos');
+          document.documentElement.setAttribute('data-palette', palette);
+        } catch {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.setAttribute('data-palette', 'cosmos');
+        }
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={new URL(enPath, siteUrl).toString()} />
+    <link rel="alternate" hreflang="pl" href={new URL(plPath, siteUrl).toString()} />
+    <link rel="alternate" hreflang="x-default" href={new URL(enPath, siteUrl).toString()} />
+    <link rel="icon" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    {
+      person && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: person.name,
+            jobTitle: person.role,
+            url: siteUrl,
+            sameAs: person.sameAs,
+          })}
+        />
+      )
+    }
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{lang === 'pl' ? 'Przejdź do treści' : 'Skip to content'}</a>
+    <slot />
+    <ChatWidget client:idle lang={lang} email={email} />
+  </body>
+</html>
+
+<style is:global>
+  /*
+   * No CSS scroll-behavior: smooth here on purpose — Header.astro's click handler
+   * animates in-page anchor navigation itself (fixed duration, not distance-scaled),
+   * and calling window.scrollTo() every animation frame while CSS smooth-scrolling
+   * is active would make each step animate on top of the other, instead of landing
+   * exactly where the script puts it. scroll-margin-top below still matters for the
+   * no-JS fallback (plain browser anchor jump) and for keyboard focus scrolling.
+   */
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+</style>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--accent);
+    color: var(--on-accent);
+    padding: var(--space-2) var(--space-4);
+    z-index: 100;
+  }
+  .skip-link:focus {
+    left: var(--space-2);
+    top: var(--space-2);
+  }
+</style>

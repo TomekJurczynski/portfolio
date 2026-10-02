@@ -1,0 +1,43 @@
+---
+import type { I18n } from '../i18n/types';
+
+interface Props {
+  i18n: I18n;
+  paragraphs: string[];
+  stack: string[];
+  seeking: string;
+}
+
+const { i18n, paragraphs, stack, seeking } = Astro.props;
+---
+
+<section id="about" class="about">
+  <div class="container">
+    <h2>{i18n.nav.about}</h2>
+    {paragraphs.map((p) => <p>{p}</p>)}
+
+    <h3>{i18n.about.stackLabel}</h3>
+    <ul class="tag-list">
+      {stack.map((item) => <li class="tag">{item}</li>)}
+    </ul>
+
+    <p class="seeking"><strong>{i18n.about.seekingLabel}:</strong> {seeking}</p>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding-block: var(--space-7);
+    background: var(--surface);
+  }
+  .about p {
+    max-width: 68ch;
+  }
+  .about h3 {
+    margin-top: var(--space-5);
+  }
+  .seeking {
+    margin-top: var(--space-5);
+    color: var(--text-muted);
+  }
+</style>

@@ -1,0 +1,57 @@
+{
+  "skipLink": "Skip to content",
+  "nav": {
+    "about": "About",
+    "apps": "Apps",
+    "cv": "CV",
+    "contact": "Contact"
+  },
+  "cta": {
+    "downloadCv": "Download CV",
+    "askAgent": "Ask the agent",
+    "viewApp": "Open app",
+    "details": "Details",
+    "hideDetails": "Hide details",
+    "copyEmail": "Copy email",
+    "copied": "Copied"
+  },
+  "langSwitch": "Polski",
+  "menu": {
+    "open": "Menu",
+    "close": "Close menu"
+  },
+  "theme": {
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
+  },
+  "about": {
+    "stackLabel": "Stack",
+    "seekingLabel": "What he's looking for"
+  },
+  "cv": {
+    "present": "Present"
+  },
+  "footer": {
+    "privacy": "Privacy"
+  },
+  "chat": {
+    "title": "Portfolio guide",
+    "launcher": "Ask the agent",
+    "newConversation": "New conversation",
+    "close": "Close",
+    "placeholder": "Ask a question…",
+    "send": "Send",
+    "stop": "Stop",
+    "welcome": "Hi! I'm the portfolio guide for Tomasz — ask me about his projects, stack, or experience.",
+    "disclaimer": "This AI assistant answers from information about Tomasz and may get things wrong.",
+    "newMessages": "New messages",
+    "retry": "Try again",
+    "interruptedNote": "(response interrupted)",
+    "errorRateLimited": "Too many messages — try again shortly, or write directly.",
+    "errorUnavailable": "The agent is unavailable right now — write directly instead.",
+    "errorNetwork": "Couldn't connect. Check your connection and try again.",
+    "errorInterrupted": "The response was interrupted.",
+    "errorGeneric": "Something went wrong.",
+    "emailFallback": "Email directly"
+  }
+}

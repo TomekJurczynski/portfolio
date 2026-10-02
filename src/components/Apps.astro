@@ -1,0 +1,70 @@
+---
+import { parseSections, type ProjectEntry } from '../content/loader';
+import type { I18n } from '../i18n/types';
+import AppCard from './AppCard.astro';
+
+interface Props {
+  i18n: I18n;
+  projects: ProjectEntry[];
+}
+
+const { i18n, projects } = Astro.props;
+---
+
+<section id="apps" class="apps">
+  <div class="container">
+    <h2>{i18n.nav.apps}</h2>
+    <div class="apps-grid">
+      {
+        projects.map((p) => (
+          <AppCard
+            id={p.frontmatter.id}
+            name={p.frontmatter.name}
+            summary={p.frontmatter.summary}
+            stack={p.frontmatter.stack}
+            role={p.frontmatter.role}
+            url={p.frontmatter.url}
+            screenshots={p.frontmatter.screenshots}
+            sections={parseSections(p.body)}
+            i18n={i18n}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  // Deep-link support: #app-<id> on load expands that card's details, scrolls it
+  // into view, and briefly highlights it — via the shared openApp helper, the
+  // same one the chat widget's {{nav:app-<id>}} actions call.
+  import { openApp } from '../scripts/nav';
+
+  const hash = location.hash;
+  if (hash.startsWith('#app-')) {
+    openApp(hash.slice('#app-'.length));
+  }
+</script>
+
+<style>
+  .apps {
+    padding-block: var(--space-7);
+  }
+  .apps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+  }
+
+  @media (min-width: 600px) {
+    .apps-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1200px) {
+    .apps-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import type { I18n } from '../i18n/types';
+
+interface Props {
+  i18n: I18n;
+  privacyHref: string;
+  showPaletteSwitcher: boolean;
+}
+
+const { i18n, privacyHref, showPaletteSwitcher } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; {year}</p>
+    <a href={privacyHref}>{i18n.footer.privacy}</a>
+    {
+      showPaletteSwitcher && (
+        <div class="palette-switcher" role="group" aria-label="Palette: Baseline / Cosmos">
+          <button type="button" data-palette-choice="baseline">
+            Baseline
+          </button>
+          <button type="button" data-palette-choice="cosmos">
+            Cosmos
+          </button>
+        </div>
+      )
+    }
+  </div>
+</footer>
+
+{
+  showPaletteSwitcher && (
+    <script>
+      document.querySelectorAll<HTMLButtonElement>('[data-palette-choice]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const palette = button.dataset.paletteChoice ?? 'baseline';
+          document.documentElement.setAttribute('data-palette', palette);
+          localStorage.setItem('palette', palette);
+          const url = new URL(location.href);
+          url.searchParams.set('palette', palette);
+          history.replaceState(null, '', url);
+        });
+      });
+    </script>
+  )
+}
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding-block: var(--space-5);
+  }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+  .footer-inner a {
+    color: var(--text-muted);
+  }
+  .palette-switcher {
+    margin-left: auto;
+    display: flex;
+    gap: var(--space-2);
+  }
+  .palette-switcher button {
+    min-height: 36px;
+    padding: 0 var(--space-3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    background: var(--raised);
+    color: var(--text);
+    cursor: pointer;
+  }
+</style>

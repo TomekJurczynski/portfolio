@@ -1,0 +1,9 @@
+allowBuilds:
+  esbuild: true
+  netlify-cli: true
+  sharp: true
+  unix-dgram: true
+minimumReleaseAgeExclude:
+  - '@anthropic-ai/sdk@0.131.0'
+  - '@netlify/functions@6.0.2'
+  - '@netlify/types@3.2.0'

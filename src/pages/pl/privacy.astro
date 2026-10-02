@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { loadSite } from '../../content/loader';
+import pl from '../../i18n/pl.json';
+
+const site = loadSite();
+const showPaletteSwitcher = import.meta.env.PUBLIC_PALETTE_SWITCHER === 'true';
+---
+
+<BaseLayout
+  lang="pl"
+  enPath="/privacy/"
+  plPath="/pl/privacy/"
+  title={`Prywatność — ${site.ownerName}`}
+  description="Co ta strona zbiera, a czego nie."
+  siteUrl={site.siteUrl}
+  email={site.email}
+>
+  <Header ownerName={site.ownerName} i18n={pl} otherLangHref="/privacy/" />
+  <main id="main">
+    <section class="container" style="padding-block: var(--space-7);">
+      <h1>Prywatność</h1>
+      <p>
+        Ta strona nie używa ciasteczek śledzących i nie zapisuje na serwerze żadnych danych
+        odwiedzających ani rekruterów. <code>localStorage</code> zapamiętuje Twój język, motyw
+        kolorystyczny i paletę, w całości w Twojej przeglądarce. <code>sessionStorage</code>
+        przechowuje Twoją rozmowę z czatem tylko na czas, gdy karta przeglądarki jest otwarta —
+        znika po jej zamknięciu i nigdy nie jest przez nas odczytywana później.
+      </p>
+      <p>
+        Host (Netlify) może zapisywać standardowe logi techniczne, w tym adresy IP, w ramach
+        serwowania strony; ten projekt nie dodaje do tego żadnego własnego logowania.
+      </p>
+      <p>
+        Ta strona ma asystenta AI w formie czatu. Wiadomości, które do niego wysyłasz, są
+        przetwarzane przez Claude API firmy Anthropic w celu wygenerowania odpowiedzi — wysyłana jest
+        tylko treść wiadomości i ostatnia część historii rozmowy, żadne inne dane osobowe. Rozpoznawanie
+        mowy nie jest jeszcze dostępne; jeśli zostanie dodane, ta strona zostanie najpierw
+        zaktualizowana o szczegóły (najprawdopodobniej: dźwięk przetwarzany przez dostawcę Twojej
+        przeglądarki).
+      </p>
+    </section>
+  </main>
+  <Footer i18n={pl} privacyHref="/pl/privacy/" showPaletteSwitcher={showPaletteSwitcher} />
+</BaseLayout>

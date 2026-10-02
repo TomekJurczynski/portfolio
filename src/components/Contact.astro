@@ -1,0 +1,63 @@
+---
+import type { I18n } from '../i18n/types';
+
+interface Props {
+  i18n: I18n;
+  email: string;
+  linkedin: string;
+  github: string;
+}
+
+const { i18n, email, linkedin, github } = Astro.props;
+---
+
+<section id="contact" class="contact" data-copied-label={i18n.cta.copied}>
+  <div class="container">
+    <h2>{i18n.nav.contact}</h2>
+    <div class="contact-actions">
+      <a class="btn btn-primary" href={`mailto:${email}`}>{email}</a>
+      <a class="btn btn-secondary" href={linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="btn btn-secondary" href={github} target="_blank" rel="noopener noreferrer">GitHub</a>
+      <button type="button" class="btn btn-secondary" id="copy-email" data-email={email}>
+        {i18n.cta.copyEmail}
+      </button>
+    </div>
+    <p id="copy-status" role="status" class="text-muted copy-status"></p>
+  </div>
+</section>
+
+<script>
+  const button = document.getElementById('copy-email');
+  const status = document.getElementById('copy-status');
+  if (button && status) {
+    const copiedLabel = (button.closest('section') as HTMLElement).dataset.copiedLabel;
+    button.addEventListener('click', async () => {
+      const email = button.getAttribute('data-email') ?? '';
+      try {
+        await navigator.clipboard.writeText(email);
+        status.textContent = copiedLabel ?? 'Copied';
+        setTimeout(() => {
+          status.textContent = '';
+        }, 2000);
+      } catch {
+        // Clipboard API unavailable — the mailto/plain-text email link above still works.
+      }
+    });
+  }
+</script>
+
+<style>
+  .contact {
+    padding-block: var(--space-7);
+  }
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+  .copy-status {
+    margin-top: var(--space-3);
+    min-height: 1.5em;
+  }
+</style>

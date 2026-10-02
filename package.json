@@ -1,0 +1,46 @@
+{
+  "name": "portfolio-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm run knowledge && pnpm run palettes && netlify dev",
+    "dev:astro-only": "pnpm run palettes && astro dev",
+    "build": "astro build",
+    "build:all": "pnpm run knowledge && pnpm run palettes && astro build",
+    "palettes": "tsx scripts/build-palettes.ts",
+    "knowledge": "tsx scripts/build-knowledge.ts",
+    "preview": "astro preview",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "astro": "7.3.5",
+    "@anthropic-ai/sdk": "0.131.0",
+    "@astrojs/react": "7.0.0",
+    "@astrojs/sitemap": "3.7.4",
+    "gray-matter": "4.0.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.0",
+    "eslint": "10.11.0",
+    "eslint-plugin-astro": "3.2.1",
+    "eslint-plugin-jsx-a11y-x": "0.2.0",
+    "astro-eslint-parser": "3.2.0",
+    "prettier": "3.9.9",
+    "prettier-plugin-astro": "1.1.0",
+    "vitest": "5.0.3",
+    "tsx": "4.23.15",
+    "@netlify/functions": "6.0.2",
+    "netlify-cli": "27.10.2",
+    "@types/node": "26.6.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0"
+  },
+  "packageManager": "pnpm@12.8.1"
+}

@@ -1,0 +1,311 @@
+---
+// Sticky header: logo, nav (horizontal >=900px, panel below), language switch,
+// theme toggle, mobile menu (role=dialog, focus trap, Esc/outside-click close).
+import type { I18n } from '../i18n/types';
+
+interface Props {
+  ownerName: string;
+  i18n: I18n;
+  otherLangHref: string;
+}
+
+const { ownerName, i18n, otherLangHref } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="bar">
+    <a class="logo" href="#top">{ownerName}</a>
+
+    <nav class="nav nav--desktop" aria-label="Primary">
+      <a href="#about" data-nav-link="about">{i18n.nav.about}</a>
+      <a href="#apps" data-nav-link="apps">{i18n.nav.apps}</a>
+      <a href="#cv" data-nav-link="cv">{i18n.nav.cv}</a>
+      <a href="#contact" data-nav-link="contact">{i18n.nav.contact}</a>
+    </nav>
+
+    <div class="controls">
+      <a id="lang-switch-link" href={otherLangHref} class="lang-switch">{i18n.langSwitch}</a>
+      <button
+        id="theme-toggle"
+        type="button"
+        class="icon-button"
+        aria-label={i18n.theme.toDark}
+        data-label-to-light={i18n.theme.toLight}
+        data-label-to-dark={i18n.theme.toDark}
+      >
+        <svg id="icon-sun" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"></circle>
+          <path
+            d="M12 2.5v2.5M12 19v2.5M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2.5 12H5M19 12h2.5M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          ></path>
+        </svg>
+        <svg id="icon-moon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" hidden>
+          <path
+            d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a6.5 6.5 0 0 0 11 11Z"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+      </button>
+      <button
+        id="menu-toggle"
+        type="button"
+        class="hamburger"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        {i18n.menu.open}
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label={i18n.menu.open} hidden>
+    <div class="mobile-menu-inner">
+      <button id="menu-close" type="button" class="icon-button">{i18n.menu.close}</button>
+      <nav class="nav nav--mobile" aria-label="Primary">
+        <a href="#about" data-nav-link="about">{i18n.nav.about}</a>
+        <a href="#apps" data-nav-link="apps">{i18n.nav.apps}</a>
+        <a href="#cv" data-nav-link="cv">{i18n.nav.cv}</a>
+        <a href="#contact" data-nav-link="contact">{i18n.nav.contact}</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  import { scrollToSection } from '../scripts/nav';
+
+  const header = document.querySelector('.site-header');
+  if (header) {
+    const menuToggle = header.querySelector<HTMLButtonElement>('#menu-toggle');
+    const menuClose = header.querySelector<HTMLButtonElement>('#menu-close');
+    const menu = header.querySelector<HTMLDivElement>('#mobile-menu');
+    const themeToggle = header.querySelector<HTMLButtonElement>('#theme-toggle');
+    const iconSun = header.querySelector<SVGElement>('#icon-sun');
+    const iconMoon = header.querySelector<SVGElement>('#icon-moon');
+    const langSwitchLink = header.querySelector<HTMLAnchorElement>('#lang-switch-link');
+
+    // Preserve the current section anchor when switching language.
+    if (langSwitchLink) {
+      const base = langSwitchLink.getAttribute('href') ?? '/';
+      langSwitchLink.setAttribute('href', base + location.hash);
+    }
+
+    // Theme toggle: simple light/dark. Dark means Cosmos-dark and light means
+    // Baseline-light — the two used to be independent (palette × theme), now this
+    // one toggle drives both together (BaseLayout.astro's bootstrap script sets
+    // the same pairing on first load, defaulting to dark/Cosmos).
+    if (themeToggle && iconSun && iconMoon) {
+      const getEffectiveTheme = (): 'light' | 'dark' => {
+        const explicit = document.documentElement.getAttribute('data-theme');
+        return explicit === 'light' ? 'light' : 'dark';
+      };
+      const applyIcon = (theme: 'light' | 'dark'): void => {
+        iconSun.toggleAttribute('hidden', theme === 'dark');
+        iconMoon.toggleAttribute('hidden', theme === 'light');
+        const label = theme === 'light' ? themeToggle.dataset.labelToDark : themeToggle.dataset.labelToLight;
+        if (label) themeToggle.setAttribute('aria-label', label);
+      };
+      applyIcon(getEffectiveTheme());
+      themeToggle.addEventListener('click', () => {
+        const next = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
+        const palette = next === 'light' ? 'baseline' : 'cosmos';
+        document.documentElement.setAttribute('data-theme', next);
+        document.documentElement.setAttribute('data-palette', palette);
+        localStorage.setItem('theme', next);
+        localStorage.setItem('palette', palette);
+        applyIcon(next);
+      });
+    }
+
+    // Mobile menu: dialog semantics, focus trap, Esc + outside click to close.
+    if (menuToggle && menuClose && menu) {
+      let lastFocused: HTMLElement | null = null;
+
+      const focusableSelector =
+        'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+      const openMenu = (): void => {
+        lastFocused = document.activeElement as HTMLElement | null;
+        menu.hidden = false;
+        menuToggle.setAttribute('aria-expanded', 'true');
+        const first = menu.querySelector<HTMLElement>(focusableSelector);
+        first?.focus();
+        document.addEventListener('keydown', onKeydown);
+        document.addEventListener('click', onOutsideClick, true);
+      };
+
+      const closeMenu = (): void => {
+        menu.hidden = true;
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('keydown', onKeydown);
+        document.removeEventListener('click', onOutsideClick, true);
+        (lastFocused ?? menuToggle).focus();
+      };
+
+      const onKeydown = (e: KeyboardEvent): void => {
+        if (e.key === 'Escape') {
+          closeMenu();
+          return;
+        }
+        if (e.key !== 'Tab') return;
+        const focusables = Array.from(menu.querySelectorAll<HTMLElement>(focusableSelector));
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      };
+
+      const onOutsideClick = (e: MouseEvent): void => {
+        if (!menu.contains(e.target as Node) && e.target !== menuToggle) closeMenu();
+      };
+
+      menuToggle.addEventListener('click', openMenu);
+      menuClose.addEventListener('click', closeMenu);
+      menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+    }
+
+    // Smooth scroll for any same-page anchor link (nav, mobile menu, ...) via the
+    // shared scrollToSection helper (src/scripts/nav.ts) — the chat widget's
+    // {{nav:<id>}} actions use the exact same function, so behavior is identical
+    // whether a section change comes from a click or from the agent. Skips
+    // [data-chat-cta] (Hero's "Ask the agent" button): ChatWidget owns that click
+    // entirely (opens the panel instead of scrolling) and calls preventDefault()
+    // itself — but only once its own listener runs, which can be *after* this one
+    // if the chat island hasn't hydrated yet, so this handler must back off first
+    // rather than relying on a later preventDefault() to undo an already-run scroll.
+    document.addEventListener('click', (event) => {
+      const link = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#"]');
+      if (!link || link.hasAttribute('data-chat-cta')) return;
+      const id = link.getAttribute('href')?.slice(1);
+      if (!id || !document.getElementById(id)) return;
+      event.preventDefault();
+      scrollToSection(id);
+    });
+
+    // Active-section highlighting + address-bar anchor update (no history entries).
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
+    const navLinks = Array.from(header.querySelectorAll<HTMLAnchorElement>('[data-nav-link]'));
+    if (sections.length > 0 && navLinks.length > 0 && 'IntersectionObserver' in window) {
+      const setActive = (id: string): void => {
+        for (const link of navLinks) {
+          const isActive = link.dataset.navLink === id;
+          link.toggleAttribute('aria-current', isActive);
+          if (isActive) link.setAttribute('aria-current', 'true');
+        }
+      };
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries.filter((e) => e.isIntersecting);
+          if (visible.length === 0) return;
+          const topMost = visible.reduce((a, b) => (a.intersectionRatio > b.intersectionRatio ? a : b));
+          const id = topMost.target.id;
+          setActive(id);
+          history.replaceState(null, '', `#${id}`);
+        },
+        { rootMargin: '-45% 0px -50% 0px' },
+      );
+      for (const section of sections) observer.observe(section);
+    }
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .bar {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    height: 64px;
+    padding-inline: var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .logo {
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav--desktop {
+    display: none;
+    gap: var(--space-5);
+  }
+  .nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9375rem;
+  }
+  .nav a[aria-current='true'] {
+    color: var(--accent-text);
+    font-weight: 600;
+  }
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .lang-switch {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  .icon-button,
+  .hamburger {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    color: var(--text);
+    cursor: pointer;
+    padding: 0 var(--space-3);
+  }
+  #mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 60;
+    padding: var(--space-4) var(--gutter);
+  }
+  .mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .nav--mobile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    font-size: 1.25rem;
+  }
+
+  @media (min-width: 900px) {
+    .nav--desktop {
+      display: flex;
+    }
+    .hamburger {
+      display: none;
+    }
+  }
+</style>

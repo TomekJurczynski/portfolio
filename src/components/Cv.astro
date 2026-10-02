@@ -1,0 +1,91 @@
+---
+import type { CvFrontmatter } from '../content/schema';
+import type { I18n } from '../i18n/types';
+
+interface Props {
+  i18n: I18n;
+  lang: 'en' | 'pl';
+  cv: CvFrontmatter;
+  cvHref: string;
+}
+
+const { i18n, lang, cv, cvHref } = Astro.props;
+
+function formatMonth(value: string, locale: string, presentLabel: string): string {
+  if (value === 'present') return presentLabel;
+  const [year, month] = value.split('-').map(Number);
+  if (!year || !month) return value;
+  const date = new Date(Date.UTC(year, month - 1, 1));
+  return new Intl.DateTimeFormat(locale, { month: 'short', year: 'numeric', timeZone: 'UTC' }).format(date);
+}
+
+const locale = lang === 'pl' ? 'pl-PL' : 'en-US';
+---
+
+<section id="cv" class="cv">
+  <div class="container">
+    <h2>{i18n.nav.cv}</h2>
+    <a class="btn btn-primary" href={cvHref} download>{i18n.cta.downloadCv}</a>
+
+    <ol class="timeline">
+      {
+        cv.experience.map((e) => (
+          <li>
+            <h3>{e.role}</h3>
+            <p class="meta">
+              {e.company} · {formatMonth(e.start, locale, i18n.cv.present)} –{' '}
+              {formatMonth(e.end, locale, i18n.cv.present)}
+            </p>
+            <ul>
+              {e.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ol>
+
+    <h3>{lang === 'pl' ? 'Edukacja' : 'Education'}</h3>
+    <ol class="timeline">
+      {
+        cv.education.map((e) => (
+          <li>
+            <h3>{e.degree}</h3>
+            <p class="meta">
+              {e.school} · {formatMonth(e.start, locale, i18n.cv.present)} –{' '}
+              {formatMonth(e.end, locale, i18n.cv.present)}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .cv {
+    padding-block: var(--space-7);
+    background: var(--surface);
+  }
+  .cv .btn {
+    margin-top: var(--space-4);
+  }
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-6) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .timeline li > h3 {
+    margin: 0 0 var(--space-1);
+    font-size: 1.0625rem;
+  }
+  .meta {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin: 0 0 var(--space-2);
+  }
+</style>

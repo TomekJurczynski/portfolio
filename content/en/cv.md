@@ -1,0 +1,46 @@
+---
+experience:
+  - company: "Consdata"
+    role: "Junior Low-Code Developer"
+    start: "2026-01"
+    end: "present"
+    bullets:
+      - "Developing scalable business applications on the Eximee low-code platform"
+      - "Designing and modeling business processes using BPMN within a BPMS environment"
+      - "Extending platform capabilities using JavaScript, HTML5 and CSS3"
+      - "Implementing business logic, validations, WCAG standards and workflow automation"
+      - "Integrating external systems via REST APIs, Web Services and databases"
+      - "Building dynamic forms, user panels, dashboards and data-driven UI components"
+  - company: "Dino S.A."
+    role: "Junior IT Specialist for Field Support"
+    start: "2025-04"
+    end: "2025-12"
+    bullets:
+      - "Coordinated and prepared IT infrastructure for new retail locations (hardware, network, POS, security)"
+      - "Collaborated with external vendors on IT systems and fire safety installations"
+      - "Oversaw and verified quality of IT services from subcontractors against SLA agreements"
+      - "Maintained business continuity by troubleshooting IT issues in existing stores"
+  - company: "EPAM Systems"
+    role: "Software Engineer"
+    start: "2021-11"
+    end: "2024-11"
+    bullets:
+      - "Implemented WCAG accessibility standards across projects for a major global technology client"
+      - "Created design tokens to simplify WCAG integration in code and standardize styles"
+      - "Remediated 100+ accessibility issues across multiple projects"
+      - "Partnered with product managers to streamline accessibility and standardization workflows"
+  - company: "Acturis Limited"
+    role: "Developer"
+    start: "2019-09"
+    end: "2021-10"
+    bullets:
+      - "Designed and implemented dynamic templates automating insurance policy document generation"
+      - "Designed XML schemas compatible with the company's insurance data models"
+      - "Established reusable XSLT libraries for frequently used transformations"
+      - "Trained developers, business analysts and QA testers on XSLT best practices"
+education:
+  - school: "Wrocław University of Science and Technology"
+    degree: "Engineer's Degree, Control Engineering and Robotics"
+    start: "2015-10"
+    end: "2019-02"
+---

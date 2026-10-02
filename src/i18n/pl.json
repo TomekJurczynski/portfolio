@@ -1,0 +1,57 @@
+{
+  "skipLink": "Przejdź do treści",
+  "nav": {
+    "about": "O mnie",
+    "apps": "Aplikacje",
+    "cv": "CV",
+    "contact": "Kontakt"
+  },
+  "cta": {
+    "downloadCv": "Pobierz CV",
+    "askAgent": "Zapytaj agenta",
+    "viewApp": "Otwórz aplikację",
+    "details": "Szczegóły",
+    "hideDetails": "Ukryj szczegóły",
+    "copyEmail": "Kopiuj e-mail",
+    "copied": "Skopiowano"
+  },
+  "langSwitch": "English",
+  "menu": {
+    "open": "Menu",
+    "close": "Zamknij menu"
+  },
+  "theme": {
+    "toLight": "Przełącz na jasny motyw",
+    "toDark": "Przełącz na ciemny motyw"
+  },
+  "about": {
+    "stackLabel": "Stack",
+    "seekingLabel": "Czego szuka"
+  },
+  "cv": {
+    "present": "Obecnie"
+  },
+  "footer": {
+    "privacy": "Prywatność"
+  },
+  "chat": {
+    "title": "Przewodnik po portfolio",
+    "launcher": "Zapytaj agenta",
+    "newConversation": "Nowa rozmowa",
+    "close": "Zamknij",
+    "placeholder": "Zadaj pytanie…",
+    "send": "Wyślij",
+    "stop": "Zatrzymaj",
+    "welcome": "Cześć! Jestem przewodnikiem po portfolio Tomasza — zapytaj mnie o jego projekty, stack albo doświadczenie.",
+    "disclaimer": "Ten asystent AI odpowiada na podstawie informacji o Tomaszu i może się mylić.",
+    "newMessages": "Nowe wiadomości",
+    "retry": "Spróbuj ponownie",
+    "interruptedNote": "(odpowiedź przerwana)",
+    "errorRateLimited": "Zbyt wiele wiadomości — spróbuj za chwilę albo napisz bezpośrednio.",
+    "errorUnavailable": "Agent jest teraz niedostępny — napisz bezpośrednio.",
+    "errorNetwork": "Nie udało się połączyć. Sprawdź połączenie i spróbuj ponownie.",
+    "errorInterrupted": "Odpowiedź została przerwana.",
+    "errorGeneric": "Coś poszło nie tak.",
+    "emailFallback": "Napisz e-mail"
+  }
+}

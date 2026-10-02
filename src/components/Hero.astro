@@ -1,0 +1,52 @@
+---
+import type { I18n } from '../i18n/types';
+
+interface Props {
+  ownerName: string;
+  ownerRole: string;
+  tagline: string;
+  i18n: I18n;
+  cvHref: string;
+}
+
+const { ownerName, ownerRole, tagline, i18n, cvHref } = Astro.props;
+---
+
+<section id="top" class="hero">
+  <div class="container hero-inner">
+    <p class="eyebrow">{ownerRole}</p>
+    <h1>{ownerName}</h1>
+    <p class="tagline">{tagline}</p>
+    <div class="cta-row">
+      {/* ChatWidget (BaseLayout) listens for [data-chat-cta] clicks and opens the chat panel;
+          href="#contact" is the no-JS/pre-hydration fallback. */}
+      <a class="btn btn-primary" data-chat-cta href="#contact">{i18n.cta.askAgent}</a>
+      <a class="btn btn-secondary" href={cvHref} download>{i18n.cta.downloadCv}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-8) var(--space-7);
+  }
+  .eyebrow {
+    color: var(--accent-text);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin: 0 0 var(--space-2);
+  }
+  .hero h1 {
+    margin: 0 0 var(--space-4);
+  }
+  .tagline {
+    max-width: 60ch;
+    color: var(--text-muted);
+    margin: 0 0 var(--space-6);
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+</style>

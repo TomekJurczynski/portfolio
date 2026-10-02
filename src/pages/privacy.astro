@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { loadSite } from '../content/loader';
+import en from '../i18n/en.json';
+
+const site = loadSite();
+const showPaletteSwitcher = import.meta.env.PUBLIC_PALETTE_SWITCHER === 'true';
+---
+
+<BaseLayout
+  lang="en"
+  enPath="/privacy/"
+  plPath="/pl/privacy/"
+  title={`Privacy — ${site.ownerName}`}
+  description="What this site does and does not collect."
+  siteUrl={site.siteUrl}
+  email={site.email}
+>
+  <Header ownerName={site.ownerName} i18n={en} otherLangHref="/pl/privacy/" />
+  <main id="main">
+    <section class="container" style="padding-block: var(--space-7);">
+      <h1>Privacy</h1>
+      <p>
+        This site does not use tracking cookies and does not store any visitor or recruiter data on
+        a server. <code>localStorage</code> keeps your language, color theme and palette preference,
+        entirely in your browser. <code>sessionStorage</code> keeps your chat conversation for as
+        long as the browser tab stays open — it clears when you close the tab and is never read back
+        by us afterwards.
+      </p>
+      <p>
+        The host (Netlify) may keep standard technical logs, including IP addresses, as part of
+        serving the site; this project does not add any logging of its own on top of that.
+      </p>
+      <p>
+        This site has an AI chat assistant. Messages you send it are processed by Anthropic's Claude
+        API to generate a reply — only the message text and recent conversation history are sent, no
+        other personal data. Voice input is not available yet; if it's added later, this page will be
+        updated first with the specifics (likely: speech recognition processed by your browser's
+        vendor).
+      </p>
+    </section>
+  </main>
+  <Footer i18n={en} privacyHref="/privacy/" showPaletteSwitcher={showPaletteSwitcher} />
+</BaseLayout>

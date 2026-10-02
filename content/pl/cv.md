@@ -1,0 +1,46 @@
+---
+experience:
+  - company: "Consdata"
+    role: "Junior Low-Code Developer"
+    start: "2026-01"
+    end: "present"
+    bullets:
+      - "Rozwijanie skalowalnych aplikacji biznesowych na platformie low-code Eximee"
+      - "Projektowanie i modelowanie procesów biznesowych z wykorzystaniem BPMN w środowisku BPMS"
+      - "Rozszerzanie możliwości platformy przy użyciu JavaScript, HTML5 i CSS3"
+      - "Implementacja logiki biznesowej, walidacji, standardów WCAG i automatyzacji workflow"
+      - "Integracja systemów zewnętrznych przez REST API, Web Services i bazy danych"
+      - "Budowanie dynamicznych formularzy, paneli użytkownika, dashboardów i komponentów UI"
+  - company: "Dino S.A."
+    role: "Junior IT Specialist for Field Support"
+    start: "2025-04"
+    end: "2025-12"
+    bullets:
+      - "Koordynacja i przygotowanie infrastruktury IT dla nowych lokalizacji sklepów (sprzęt, sieć, POS, ochrona)"
+      - "Współpraca z dostawcami zewnętrznymi w zakresie systemów IT i instalacji przeciwpożarowych"
+      - "Nadzór i weryfikacja jakości usług IT podwykonawców pod kątem umów SLA"
+      - "Utrzymanie ciągłości działania przez rozwiązywanie problemów IT w istniejących sklepach"
+  - company: "EPAM Systems"
+    role: "Software Engineer"
+    start: "2021-11"
+    end: "2024-11"
+    bullets:
+      - "Implementacja standardów dostępności WCAG w projektach dla globalnego klienta technologicznego"
+      - "Tworzenie tokenów designu ułatwiających integrację WCAG w kodzie i standaryzację stylów"
+      - "Naprawa ponad 100 problemów z dostępnością w wielu projektach"
+      - "Współpraca z product managerami przy usprawnianiu procesów dostępności i standaryzacji"
+  - company: "Acturis Limited"
+    role: "Developer"
+    start: "2019-09"
+    end: "2021-10"
+    bullets:
+      - "Projektowanie i implementacja dynamicznych szablonów automatyzujących generowanie dokumentów polis"
+      - "Projektowanie schematów XML zgodnych z modelami danych ubezpieczeniowych firmy"
+      - "Utworzenie bibliotek XSLT wielokrotnego użytku dla często wykonywanych transformacji"
+      - "Szkolenie deweloperów, analityków biznesowych i testerów QA w zakresie dobrych praktyk XSLT"
+education:
+  - school: "Politechnika Wrocławska"
+    degree: "Inżynier, Automatyka i Robotyka"
+    start: "2015-10"
+    end: "2019-02"
+---

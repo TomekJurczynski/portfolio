@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Apps from '../../components/Apps.astro';
+import Cv from '../../components/Cv.astro';
+import Contact from '../../components/Contact.astro';
+import Footer from '../../components/Footer.astro';
+import { loadCv, loadProfile, loadProjects, loadSite, splitParagraphs } from '../../content/loader';
+import pl from '../../i18n/pl.json';
+
+const site = loadSite();
+const profile = loadProfile('pl');
+const cv = loadCv('pl');
+const projects = loadProjects('pl');
+const showPaletteSwitcher = import.meta.env.PUBLIC_PALETTE_SWITCHER === 'true';
+---
+
+<BaseLayout
+  lang="pl"
+  enPath="/"
+  plPath="/pl/"
+  title={`${site.ownerName} — ${site.ownerRole}`}
+  description={profile.frontmatter.tagline}
+  siteUrl={site.siteUrl}
+  email={site.email}
+  person={{ name: site.ownerName, role: site.ownerRole, sameAs: [site.links.linkedin, site.links.github] }}
+>
+  <Header ownerName={site.ownerName} i18n={pl} otherLangHref="/" />
+  <main id="main">
+    <Hero
+      ownerName={site.ownerName}
+      ownerRole={site.ownerRole}
+      tagline={profile.frontmatter.tagline}
+      i18n={pl}
+      cvHref="/cv/cv-en.pdf"
+    />
+    <About
+      i18n={pl}
+      paragraphs={splitParagraphs(profile.body)}
+      stack={profile.frontmatter.stack}
+      seeking={profile.frontmatter.seeking}
+    />
+    <Apps i18n={pl} projects={projects} />
+    <Cv i18n={pl} lang="pl" cv={cv} cvHref="/cv/cv-en.pdf" />
+    <Contact i18n={pl} email={site.email} linkedin={site.links.linkedin} github={site.links.github} />
+  </main>
+  <Footer i18n={pl} privacyHref="/pl/privacy/" showPaletteSwitcher={showPaletteSwitcher} />
+</BaseLayout>
