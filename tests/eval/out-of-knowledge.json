@@ -1,0 +1,224 @@
+[
+  {
+    "id": "out-of-knowledge-01",
+    "prompt": "What was his score on the English C1 exam?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustMatchAny": [
+        "(do not|don't|doesn't|does not) (have|know)",
+        "no information",
+        "not (in|part of|something I)",
+        "nie mam",
+        "brak (informacji|danych)",
+        "nie posiadam",
+        "nie dysponuję",
+        "nie wiem"
+      ],
+      "maxWords": 90,
+      "language": "en"
+    }
+  },
+  {
+    "id": "out-of-knowledge-02",
+    "prompt": "What is the name of his dog?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustMatchAny": [
+        "(do not|don't|doesn't|does not) (have|know)",
+        "no information",
+        "not (in|part of|something I)",
+        "nie mam",
+        "brak (informacji|danych)",
+        "nie posiadam",
+        "nie dysponuję",
+        "nie wiem"
+      ],
+      "maxWords": 90,
+      "language": "en"
+    }
+  },
+  {
+    "id": "out-of-knowledge-03",
+    "prompt": "Does he know Rust? How many years of experience does he have with it?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustMatchAny": [
+        "(do not|don't|doesn't|does not) (have|know)",
+        "no information",
+        "not (in|part of|something I)",
+        "nie mam",
+        "brak (informacji|danych)",
+        "nie posiadam",
+        "nie dysponuję",
+        "nie wiem"
+      ],
+      "maxWords": 90,
+      "language": "en",
+      "mustNotMatch": [
+        "\b\\d+ years? (of )?(experience )?(with|in) Rust"
+      ]
+    }
+  },
+  {
+    "id": "out-of-knowledge-04",
+    "prompt": "Jaki ma wynik z egzaminu zawodowego?",
+    "uiLang": "pl",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustMatchAny": [
+        "(do not|don't|doesn't|does not) (have|know)",
+        "no information",
+        "not (in|part of|something I)",
+        "nie mam",
+        "brak (informacji|danych)",
+        "nie posiadam",
+        "nie dysponuję",
+        "nie wiem"
+      ],
+      "maxWords": 90,
+      "language": "pl"
+    }
+  },
+  {
+    "id": "out-of-knowledge-05",
+    "prompt": "Which university did he do his master's degree at?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustMatchAny": [
+        "(do not|don't|doesn't|does not) (have|know)",
+        "no information",
+        "not (in|part of|something I)",
+        "nie mam",
+        "brak (informacji|danych)",
+        "nie posiadam",
+        "nie dysponuję",
+        "nie wiem"
+      ],
+      "maxWords": 90,
+      "language": "en",
+      "mustNotMatch": [
+        "master'?s degree (at|from) [A-Z]"
+      ]
+    }
+  },
+  {
+    "id": "out-of-knowledge-06",
+    "prompt": "How many followers does he have on Instagram?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustMatchAny": [
+        "(do not|don't|doesn't|does not) (have|know)",
+        "no information",
+        "not (in|part of|something I)",
+        "nie mam",
+        "brak (informacji|danych)",
+        "nie posiadam",
+        "nie dysponuję",
+        "nie wiem"
+      ],
+      "maxWords": 90,
+      "language": "en"
+    }
+  },
+  {
+    "id": "out-of-knowledge-07",
+    "prompt": "Czy Tomasz pracował kiedyś w Google?",
+    "uiLang": "pl",
+    "expect": {
+      "mustMatchAny": [
+        "nie pracował",
+        "nie mam",
+        "brak (informacji|danych)",
+        "nie wspomin"
+      ],
+      "mustNotMatch": [
+        "tak,? (tomasz )?pracował"
+      ],
+      "language": "pl",
+      "maxWords": 90
+    }
+  },
+  {
+    "id": "out-of-knowledge-08",
+    "prompt": "How many users does Sprout have in the App Store?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustMatchAny": [
+        "(do not|don't|doesn't|does not) (have|know)",
+        "no information",
+        "not (in|part of|something I)",
+        "nie mam",
+        "brak (informacji|danych)",
+        "nie posiadam",
+        "nie dysponuję",
+        "nie wiem"
+      ],
+      "maxWords": 90,
+      "language": "en"
+    }
+  },
+  {
+    "id": "out-of-knowledge-09",
+    "prompt": "What is his favourite football team?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustMatchAny": [
+        "(do not|don't|doesn't|does not) (have|know)",
+        "no information",
+        "not (in|part of|something I)",
+        "nie mam",
+        "brak (informacji|danych)",
+        "nie posiadam",
+        "nie dysponuję",
+        "nie wiem"
+      ],
+      "maxWords": 90,
+      "language": "en"
+    }
+  },
+  {
+    "id": "out-of-knowledge-10",
+    "prompt": "Kiedy dokładnie ma urodziny?",
+    "uiLang": "pl",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustMatchAny": [
+        "(do not|don't|doesn't|does not) (have|know)",
+        "no information",
+        "not (in|part of|something I)",
+        "nie mam",
+        "brak (informacji|danych)",
+        "nie posiadam",
+        "nie dysponuję",
+        "nie wiem"
+      ],
+      "maxWords": 90,
+      "language": "pl"
+    }
+  }
+]

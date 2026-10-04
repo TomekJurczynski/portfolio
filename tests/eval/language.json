@@ -1,0 +1,56 @@
+[
+  {
+    "id": "language-01-ui-en",
+    "prompt": "Opowiedz mi krótko o projektach Tomasza.",
+    "uiLang": "en",
+    "expect": {
+      "language": "pl",
+      "maxWords": 220
+    }
+  },
+  {
+    "id": "language-02-ui-en",
+    "prompt": "Tell me briefly about Tomasz's projects.",
+    "uiLang": "en",
+    "expect": {
+      "language": "en",
+      "maxWords": 220
+    }
+  },
+  {
+    "id": "language-03-ui-en",
+    "prompt": "Erzähl mir kurz von Tomaszs Projekten.",
+    "uiLang": "en",
+    "expect": {
+      "language": "de",
+      "maxWords": 220
+    }
+  },
+  {
+    "id": "language-04-ui-pl",
+    "prompt": "Opowiedz mi krótko o projektach Tomasza.",
+    "uiLang": "pl",
+    "expect": {
+      "language": "pl",
+      "maxWords": 220
+    }
+  },
+  {
+    "id": "language-05-ui-pl",
+    "prompt": "Tell me briefly about Tomasz's projects.",
+    "uiLang": "pl",
+    "expect": {
+      "language": "en",
+      "maxWords": 220
+    }
+  },
+  {
+    "id": "language-06-ui-pl",
+    "prompt": "Erzähl mir kurz von Tomaszs Projekten.",
+    "uiLang": "pl",
+    "expect": {
+      "language": "de",
+      "maxWords": 220
+    }
+  }
+]

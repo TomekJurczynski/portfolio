@@ -21,3 +21,6 @@ deno.lock
 CLAUDE.md
 HANDOFF.md
 .lighthouseci/
+
+# Agent eval output (full model replies)
+tests/eval/results/

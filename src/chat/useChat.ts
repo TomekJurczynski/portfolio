@@ -47,11 +47,17 @@ function persist(messages: StoredMessage[]): void {
   }
 }
 
-/** Drops actions whose id isn't in the build-time allow-list (§6.4: unknown ids are skipped). */
+const MAX_ACTIONS_PER_MESSAGE = 2;
+
+/**
+ * Drops actions whose id isn't in the build-time allow-list (§6.4: unknown ids are skipped) and
+ * enforces the prompt's "at most two actions per answer" here too — the prompt alone is soft
+ * (agent eval: "show me all the links" got 6 markers).
+ */
 function filterKnownActions(actions: ChatAction[]): ChatAction[] {
-  return actions.filter((a) =>
-    a.kind === 'link' ? a.id in linkTargets : a.id in navTargets,
-  );
+  return actions
+    .filter((a) => (a.kind === 'link' ? a.id in linkTargets : a.id in navTargets))
+    .slice(0, MAX_ACTIONS_PER_MESSAGE);
 }
 
 function runAction(action: ChatAction): void {
