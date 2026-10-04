@@ -37,6 +37,8 @@ jobs:
 
       - name: Build
         run: pnpm run build:all
+        env:
+          PUBLIC_VOICE_PROVIDER: cloud
 
       - name: Size budgets
         run: pnpm run budgets
@@ -47,8 +49,10 @@ jobs:
       - name: Install Playwright browser
         run: pnpm exec playwright install --with-deps chromium
 
-      - name: E2E tests (mocked /api/chat)
+      - name: E2E tests (mocked /api/chat and /api/speak)
         run: pnpm exec playwright test
+        env:
+          E2E_CLOUD_VOICE: '1'
 
       - name: Upload Playwright traces
         if: failure()

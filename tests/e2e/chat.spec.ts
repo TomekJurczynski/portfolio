@@ -10,6 +10,20 @@ import {
 } from './helpers';
 
 test.describe('chat — happy path', () => {
+  test('never shows Markdown syntax, even when it is split across stream chunks', async ({ page }) => {
+    await mockReply(page, ['**Zawodowo (Cons', 'data):** React, ', 'TypeScript.\n- Astro\n* Claude API']);
+    await page.goto('/');
+    await openChat(page);
+    await sendMessage(page, 'Stack?');
+
+    const log = chatPanel(page).getByRole('log');
+    await expect(log).toContainText('Zawodowo (Consdata): React, TypeScript.');
+    await expect(log).toContainText('Claude API');
+    const text = (await log.innerText()).replace(/\s+/g, ' ');
+    expect(text).not.toMatch(/[*`#]/);
+    expect(text).not.toContain('- Astro');
+  });
+
   test('opens from the launcher and from the hero CTA, closes with the button', async ({ page }) => {
     await page.goto('/');
     await openChat(page);

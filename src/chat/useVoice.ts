@@ -4,6 +4,7 @@
 // per the state diagram in 02-SPEC-TECHNICZNA.md §4.2/§5.1.
 import { useCallback, useEffect, useState } from 'react';
 import { createVoiceProvider } from '../voice';
+import { CloudSpeechProvider } from '../voice/cloudSpeechProvider';
 import { WebSpeechProvider } from '../voice/webSpeechProvider';
 import type { VoiceErrorCode, VoiceLang, VoiceState } from '../voice/types';
 
@@ -23,7 +24,8 @@ export function useVoice(lang: 'en' | 'pl', options: UseVoiceOptions = {}) {
   // Capability checks touch `window` — only safe post-mount (BaseLayout/Astro SSR).
   useEffect(() => {
     setCanListen(provider.isSupported());
-    setCanSpeak(provider.mode === 'pipeline' && WebSpeechProvider.isSynthesisSupported());
+    setCanSpeak(provider.mode === 'pipeline' &&
+        (provider.id === 'cloud' ? CloudSpeechProvider.isSpeechSupported() : WebSpeechProvider.isSynthesisSupported()));
   }, [provider]);
 
   useEffect(() => {
@@ -50,6 +52,11 @@ export function useVoice(lang: 'en' | 'pl', options: UseVoiceOptions = {}) {
   }, [provider, onTranscript, onInterim]);
 
   const voiceLang: VoiceLang = lang === 'pl' ? 'pl-PL' : 'en-US';
+
+  // Read-aloud must follow the UI language even when the mic was never clicked.
+  useEffect(() => {
+    provider.setLang?.(voiceLang);
+  }, [provider, voiceLang]);
 
   const start = useCallback(() => {
     setError(null);

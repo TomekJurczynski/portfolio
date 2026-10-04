@@ -182,6 +182,10 @@ export class WebSpeechProvider implements VoiceProvider {
     this.silenceTimer = setTimeout(() => this.stop(), SILENCE_TIMEOUT_MS);
   }
 
+  setLang(lang: VoiceLang): void {
+    this.currentLang = lang;
+  }
+
   async start(opts: { lang: VoiceLang }): Promise<void> {
     // Clicking the mic interrupts any ongoing readout (§5.1 step 1).
     this.cancelSpeech();

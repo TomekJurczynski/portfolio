@@ -17,6 +17,9 @@
     "test:e2e": "pnpm run build:all && playwright test",
     "eval": "tsx --env-file=.env scripts/eval.ts",
     "images": "node scripts/optimize-images.mjs",
+    "tts:samples": "tsx --env-file=.env scripts/tts-samples.ts",
+    "tts:compare": "tsx --env-file=.env scripts/tts-compare.ts",
+    "el:voices": "tsx --env-file=.env scripts/el-voices.ts",
     "budgets": "node scripts/check-budgets.mjs",
     "lighthouse": "lhci autorun"
   },

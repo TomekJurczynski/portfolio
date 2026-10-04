@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { chunkForSpeech, stripForSpeech } from '../../src/voice/textChunking';
+import { chunkForCloud, chunkForSpeech, stripForSpeech } from '../../src/voice/textChunking';
 
 describe('stripForSpeech', () => {
   it('removes action markers', () => {
@@ -53,5 +53,27 @@ describe('chunkForSpeech', () => {
 
   it('returns an empty array for empty input', () => {
     expect(chunkForSpeech('')).toEqual([]);
+  });
+});
+
+describe('chunkForCloud', () => {
+  const reply =
+    'Tomasz pracuje w Consdata. Buduje też własne aplikacje, kierując agentami AI przez całą implementację. ' +
+    'Najbardziej dumny jest z asystenta w tym portfolio, który odpowiada głosem. Chcesz wiedzieć więcej?';
+
+  it('keeps the first chunk short so audio can start early', () => {
+    const chunks = chunkForCloud(reply);
+    expect(chunks[0]?.length).toBeLessThan(140);
+    expect(chunks[0]).toContain('Tomasz pracuje w Consdata.');
+  });
+
+  it('loses no words and respects maxLen', () => {
+    const chunks = chunkForCloud(reply, 50, 150);
+    expect(chunks.join(' ').replace(/\s+/g, ' ')).toBe(reply);
+    for (const c of chunks) expect(c.length).toBeLessThanOrEqual(150);
+  });
+
+  it('returns a single chunk for a short reply', () => {
+    expect(chunkForCloud('Cześć!')).toEqual(['Cześć!']);
   });
 });

@@ -44,8 +44,15 @@ const showPaletteSwitcher = import.meta.env.PUBLIC_PALETTE_SWITCHER === 'true';
         to the browser vendor's speech service — this site never receives or stores the audio, only
         the transcribed text that you then send like any other message. The microphone button also
         reads the input level locally to animate itself; that audio is not recorded or sent
-        anywhere. Reading replies aloud uses your browser's built-in speech synthesis on your
-        device. Firefox has no speech recognition, so the microphone button is hidden there.
+        anywhere. Firefox has no speech recognition, so the microphone button is hidden there.
+      </p>
+      <p>
+        Reading a reply aloud (automatically after a spoken question, or when you tap the speaker
+        icon) sends the text of that reply through this site's server to a text-to-speech provider
+        (currently ElevenLabs), which returns the audio. Only the reply text is sent — not your
+        question and no other personal data — and this site does not store it. The provider
+        processes it under its own privacy policy. If the voice service is unavailable, the reply
+        is read with your browser's built-in speech synthesis on your device instead.
       </p>
     </section>
   </main>

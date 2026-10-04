@@ -25,9 +25,11 @@ export type VoiceEvent =
 export type VoiceEventType = VoiceEvent['type'];
 
 export interface VoiceProvider {
-  readonly id: 'web-speech' | 'elevenlabs' | 'openai-realtime' | 'gemini-live';
+  readonly id: 'web-speech' | 'cloud' | 'elevenlabs' | 'openai-realtime' | 'gemini-live';
   readonly mode: 'pipeline' | 'realtime';
   isSupported(): boolean;
+  /** Language for read-aloud; the UI language can change without the mic ever being used. */
+  setLang?(lang: VoiceLang): void;
   start(opts: { lang: VoiceLang }): Promise<void>;
   stop(): void;
   speak?(text: string): Promise<void>;

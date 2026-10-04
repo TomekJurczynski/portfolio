@@ -44,9 +44,16 @@ const showPaletteSwitcher = import.meta.env.PUBLIC_PALETTE_SWITCHER === 'true';
         rozpoznawania mowy jej producenta — ta strona nigdy nie odbiera ani nie zapisuje dźwięku,
         dostaje tylko tekst, który następnie wysyłasz jak każdą inną wiadomość. Przycisk mikrofonu
         odczytuje też lokalnie poziom głośności, aby animować kulkę; ten dźwięk nie jest nagrywany
-        ani nigdzie wysyłany. Odczytywanie odpowiedzi na głos korzysta z wbudowanej w przeglądarkę
-        syntezy mowy na Twoim urządzeniu. Firefox nie ma rozpoznawania mowy, więc przycisk
-        mikrofonu jest tam ukryty.
+        ani nigdzie wysyłany. Firefox nie ma rozpoznawania mowy, więc przycisk mikrofonu jest tam
+        ukryty.
+      </p>
+      <p>
+        Odczytanie odpowiedzi na głos (automatycznie po pytaniu zadanym głosem albo po kliknięciu
+        ikony głośnika) wysyła tekst tej odpowiedzi przez serwer tej strony do dostawcy syntezy
+        mowy (obecnie ElevenLabs), który zwraca dźwięk. Wysyłany jest tylko tekst odpowiedzi — nie
+        Twoje pytanie ani żadne inne dane osobowe — a ta strona go nie zapisuje. Dostawca
+        przetwarza go zgodnie z własną polityką prywatności. Gdy usługa głosowa jest niedostępna,
+        odpowiedź czyta wbudowana w przeglądarkę synteza mowy na Twoim urządzeniu.
       </p>
     </section>
   </main>

@@ -24,3 +24,4 @@ HANDOFF.md
 
 # Agent eval output (full model replies)
 tests/eval/results/
+tmp-tts-samples/

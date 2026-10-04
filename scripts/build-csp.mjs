@@ -49,6 +49,7 @@ const csp = [
   `style-src 'self' ${[...styleHashes].join(' ')}`.trim(),
   `script-src 'self' ${[...scriptHashes].join(' ')}`.trim(),
   "connect-src 'self'",
+  "media-src 'self' blob: data:",
   "object-src 'none'",
   "frame-ancestors 'none'",
   "base-uri 'self'",
