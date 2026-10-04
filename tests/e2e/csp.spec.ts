@@ -1,9 +1,12 @@
-import { readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { existsSync, readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 import { chatPanel, mockReply, openChat, sendMessage } from './helpers';
 
 // `astro preview` doesn't serve dist/_headers, so replay the production CSP that
 // scripts/build-csp.mjs generated onto every document response and fail on any violation.
+// `pnpm dev` deletes dist/_headers (see scripts/rm-dist-headers.mjs); regenerate it from the current dist/.
+if (!existsSync('dist/_headers')) execFileSync('node', ['scripts/build-csp.mjs']);
 const csp = /Content-Security-Policy: (.+)/.exec(readFileSync('dist/_headers', 'utf8'))?.[1];
 
 async function withCsp(page: Page): Promise<string[]> {

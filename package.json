@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm run knowledge && pnpm run palettes && netlify dev",
+    "dev": "pnpm run knowledge && pnpm run palettes && node scripts/rm-dist-headers.mjs && netlify dev",
     "dev:astro-only": "pnpm run palettes && astro dev",
     "build": "astro build",
     "build:all": "pnpm run knowledge && pnpm run palettes && astro build && node scripts/build-csp.mjs",
