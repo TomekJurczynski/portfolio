@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- Source of public/og/cover.png (1200x630). Render: node scripts/render-og.mjs
+     The blob is the chat VoiceOrb (src/chat/VoiceOrb.tsx) frozen in its "speaking" state. -->
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; background: #0B0F17; overflow: hidden; }
+  body { position: relative; font-family: 'Inter Variable', Inter, 'Segoe UI', system-ui, sans-serif; color: #E8ECF1; }
+  canvas { position: absolute; right: -40px; top: -35px; width: 700px; height: 700px; }
+  .text { position: absolute; left: 80px; top: 0; bottom: 0; width: 560px; display: flex; flex-direction: column; justify-content: center; }
+  .kicker { font-size: 24px; letter-spacing: 0.04em; color: #B58CFF; margin: 0 0 20px; font-weight: 600; }
+  h1 { font-size: 76px; line-height: 1.04; margin: 0 0 24px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { font-size: 30px; line-height: 1.35; color: #9AA7BC; margin: 0; }
+</style>
+</head>
+<body>
+<div class="text">
+  <p class="kicker">PORTFOLIO &middot; AI AGENT</p>
+  <h1>Tomasz Jurczyński</h1>
+  <p class="sub">Low-code developer directing AI agents. Ask the agent about my work.</p>
+</div>
+<canvas id="c" width="1400" height="1400"></canvas>
+<script>
+  const px = 1400, ctx = document.getElementById('c').getContext('2d');
+  const colors = [[255, 100, 200], [255, 160, 90], [190, 110, 255]]; // speaking palette
+  const LAYERS = [
+    { scale: 1.0, speed: 0.55, wob: 1.0, alpha: 0.55, phase: 0 },
+    { scale: 0.88, speed: -0.8, wob: 1.3, alpha: 0.55, phase: 2 },
+    { scale: 0.74, speed: 1.1, wob: 1.6, alpha: 0.6, phase: 4 },
+  ];
+  const N = 160, t = 3.1, energy = 0.5;
+  const cx = px / 2, cy = px / 2, r = px * 0.3 * (1 + energy * 0.35);
+  const glow = ctx.createRadialGradient(cx, cy, r * 0.2, cx, cy, px / 2);
+  glow.addColorStop(0, `rgba(${colors[0]},${0.22 + energy * 0.35})`);
+  glow.addColorStop(1, `rgba(${colors[0]},0)`);
+  ctx.fillStyle = glow; ctx.fillRect(0, 0, px, px);
+  ctx.globalCompositeOperation = 'lighter';
+  LAYERS.forEach((layer, li) => {
+    ctx.beginPath();
+    for (let i = 0; i <= N; i++) {
+      const a = (i / N) * Math.PI * 2, tt = t * layer.speed + layer.phase;
+      const n = Math.sin(a * 3 + tt * 1.3) * 0.5 + Math.sin(a * 5 - tt * 1.9) * 0.3 +
+        Math.sin(a * 8 + tt * 2.7 + li) * 0.2 * (0.3 + energy * 2.2);
+      const rad = r * layer.scale * (1 + n * (0.05 + energy * 0.55) * layer.wob);
+      const x = cx + Math.cos(a) * rad, y = cy + Math.sin(a) * rad;
+      i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    }
+    ctx.closePath();
+    const g = ctx.createRadialGradient(cx, cy, r * 0.1, cx, cy, r * 1.4);
+    g.addColorStop(0, `rgba(${colors[li]},${layer.alpha * 0.25})`);
+    g.addColorStop(0.7, `rgba(${colors[li]},${layer.alpha})`);
+    g.addColorStop(1, `rgba(${colors[li]},0.05)`);
+    ctx.fillStyle = g; ctx.fill();
+  });
+  const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 0.55);
+  core.addColorStop(0, `rgba(255,255,255,${0.35 + energy * 0.5})`);
+  core.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = core; ctx.beginPath(); ctx.arc(cx, cy, r * 0.55, 0, Math.PI * 2); ctx.fill();
+</script>
+</body>
+</html>
