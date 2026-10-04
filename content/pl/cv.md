@@ -26,8 +26,8 @@ experience:
     end: "2024-11"
     bullets:
       - "Implementacja standardów dostępności WCAG w projektach dla globalnego klienta technologicznego"
-      - "Tworzenie tokenów designu ułatwiających integrację WCAG w kodzie i standaryzację stylów"
-      - "Naprawa ponad 100 problemów z dostępnością w wielu projektach"
+      - "Tworzenie design tokenów ułatwiających integrację WCAG w kodzie i standaryzację stylów"
+      - "Usunięcie ponad 100 problemów z dostępnością w wielu projektach"
       - "Współpraca z product managerami przy usprawnianiu procesów dostępności i standaryzacji"
   - company: "Acturis Limited"
     role: "Developer"

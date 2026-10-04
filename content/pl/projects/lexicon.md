@@ -3,14 +3,14 @@ id: "lexicon"
 name: "Lexicon"
 order: 1
 url: "https://nimble-dango-6f473b.netlify.app/"
-summary: "Offline'owa aplikacja PWA do codziennej nauki słownictwa z powtórkami, streakami per język i wymową."
+summary: "Aplikacja PWA działająca offline do codziennej nauki słownictwa z powtórkami, seriami dni per język i wymową."
 stack:
   - "Vanilla JavaScript"
   - "HTML5 / CSS3"
   - "Progressive Web App"
   - "Web Speech API"
   - "localStorage"
-role: "Jedyny deweloper — kierował agentem AI przez 6 kolejnych wersji na podstawie realnego, codziennego użytkowania."
+role: "Jedyny deweloper — kierował agentem AI przez cztery duże wersje (obecnie 4.0) na podstawie realnego, codziennego użytkowania."
 screenshots:
   - src: "/images/projects/lexicon/main-screen.jpg"
     alt: "Ekran wyboru języka w Lexiconie — angielski, włoski i norweski ze streakami per język"
@@ -26,7 +26,7 @@ Typowe aplikacje do nauki języków skupiają się na gramatyce lub konwersacji.
 
 ## Decyzje
 
-Aplikacja powstała jako instalowalna Progressive Web App zamiast natywnej aplikacji, bez żadnego backendu — wszystko żyje w `localStorage`, co utrzymuje projekt darmowym, prywatnym i w pełni offline. Powtórki słówek wykorzystują sześciopoziomowy system Leitnera, a streaki liczone są per język, nie globalnie ani per poziom CEFR — świadomy kompromis między motywacją a nadmierną fragmentacją. Wymowa korzysta z wbudowanego w przeglądarkę Web Speech API zamiast płatnego API TTS w chmurze, kosztem jakości głosu na rzecz zera kosztów i pełnego działania offline.
+Aplikacja powstała jako instalowalna Progressive Web App zamiast natywnej aplikacji, bez żadnego backendu — wszystko żyje w `localStorage`, co utrzymuje projekt darmowym, prywatnym i w pełni offline. Powtórki słówek wykorzystują pudełkowy system Leitnera (6 pudełek), a serie dni (streaki) liczone są osobno dla każdego języka, nie globalnie ani per poziom CEFR — świadomy kompromis między motywacją a nadmierną fragmentacją. Wymowa korzysta z wbudowanego w przeglądarkę Web Speech API zamiast płatnego API TTS w chmurze, kosztem słabszej jakości głosu, ale bez kosztów i z pełnym działaniem offline.
 
 ## Wyzwania
 
@@ -34,4 +34,4 @@ Każda aktualizacja musi zachować postęp użytkownika: nazwy kluczy w `localSt
 
 ## Wynik
 
-Działająca aplikacja używana codziennie przez właściciela — obecnie wersja 4, obsługująca wiele języków (angielski, włoski oraz dowolne języki dodane przez użytkownika) na wszystkich 5 poziomach CEFR, z ponad 1200 słówkami w zaimportowanych paczkach, przełącznikiem kierunku nauki (obcy → ojczysty lub odwrotnie) i odtwarzaniem wymowy dla każdej fiszki.
+Działająca aplikacja używana codziennie przez właściciela — obecnie wersja 4.0, obsługująca dowolny język, który użytkownik doda (na zrzutach ekranu skonfigurowane są angielski, włoski i norweski) na wszystkich 5 poziomach CEFR, z ponad 1200 słówkami w zaimportowanych paczkach, przełącznikiem kierunku nauki (obcy → ojczysty lub odwrotnie) i odtwarzaniem wymowy dla każdej fiszki.

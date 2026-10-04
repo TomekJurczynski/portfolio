@@ -55,15 +55,15 @@
     "errorInterrupted": "Odpowiedź została przerwana.",
     "errorGeneric": "Coś poszło nie tak.",
     "emailFallback": "Napisz e-mail",
-    "micStart": "Powiedz swoje pytanie",
+    "micStart": "Zadaj pytanie głosem",
     "micStop": "Zatrzymaj nasłuchiwanie",
     "playReply": "Odsłuchaj tę odpowiedź",
     "stopReply": "Zatrzymaj czytanie",
     "voiceErrorNotAllowed": "Mikrofon jest zablokowany. Zezwól na dostęp w ustawieniach przeglądarki albo napisz wiadomość.",
-    "voiceErrorNoSpeech": "Nic nie usłyszałem, spróbuj ponownie.",
+    "voiceErrorNoSpeech": "Nie wykryto mowy — spróbuj ponownie.",
     "voiceErrorAudioCapture": "Nie znaleziono mikrofonu.",
     "voiceErrorNetwork": "Rozpoznawanie mowy wymaga połączenia z internetem.",
     "voiceErrorLanguageNotSupported": "Ten język nie jest obsługiwany głosowo, napisz wiadomość.",
-    "voiceErrorUnknown": "Głos teraz nie działa — napisz wiadomość."
+    "voiceErrorUnknown": "Wejście głosowe jest teraz niedostępne — napisz wiadomość."
   }
 }

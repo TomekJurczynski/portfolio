@@ -10,7 +10,7 @@ stack:
   - "Progressive Web App"
   - "Web Speech API"
   - "localStorage"
-role: "Sole developer, directing an AI coding agent through 6 iterative versions driven by real daily use."
+role: "Sole developer, directing an AI coding agent through four major versions (now 4.0), driven by real daily use."
 screenshots:
   - src: "/images/projects/lexicon/main-screen.jpg"
     alt: "Lexicon language selection screen showing English, Italian and Norwegian with per-language streaks"
@@ -34,4 +34,4 @@ Every update has to preserve the user's existing progress: `localStorage` key na
 
 ## Outcome
 
-A working app used daily by its owner — now on version 4, supporting multiple languages (English, Italian, plus user-added custom languages) across all 5 CEFR levels, with over 1,200 words across imported packs, direction switching (foreign → native or native → foreign), and audio playback for every card.
+A working app used daily by its owner — now on version 4.0, supporting any language the user chooses to add (English, Italian and Norwegian are set up in the screenshots) across all 5 CEFR levels, with over 1,200 words across imported packs, direction switching (foreign → native or native → foreign), and audio playback for every card.

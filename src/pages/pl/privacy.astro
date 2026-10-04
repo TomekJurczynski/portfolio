@@ -36,10 +36,17 @@ const showPaletteSwitcher = import.meta.env.PUBLIC_PALETTE_SWITCHER === 'true';
       <p>
         Ta strona ma asystenta AI w formie czatu. Wiadomości, które do niego wysyłasz, są
         przetwarzane przez Claude API firmy Anthropic w celu wygenerowania odpowiedzi — wysyłana jest
-        tylko treść wiadomości i ostatnia część historii rozmowy, żadne inne dane osobowe. Rozpoznawanie
-        mowy nie jest jeszcze dostępne; jeśli zostanie dodane, ta strona zostanie najpierw
-        zaktualizowana o szczegóły (najprawdopodobniej: dźwięk przetwarzany przez dostawcę Twojej
-        przeglądarki).
+        tylko treść wiadomości i ostatnia część historii rozmowy, żadne inne dane osobowe.
+      </p>
+      <p>
+        Głos jest opcjonalny. Gdy klikniesz mikrofon, rozpoznawaniem mowy zajmuje się Twoja
+        przeglądarka, a w zależności od niej (np. Chrome i Edge) dźwięk może trafić do usługi
+        rozpoznawania mowy jej producenta — ta strona nigdy nie odbiera ani nie zapisuje dźwięku,
+        dostaje tylko tekst, który następnie wysyłasz jak każdą inną wiadomość. Przycisk mikrofonu
+        odczytuje też lokalnie poziom głośności, aby animować kulkę; ten dźwięk nie jest nagrywany
+        ani nigdzie wysyłany. Odczytywanie odpowiedzi na głos korzysta z wbudowanej w przeglądarkę
+        syntezy mowy na Twoim urządzeniu. Firefox nie ma rozpoznawania mowy, więc przycisk
+        mikrofonu jest tam ukryty.
       </p>
     </section>
   </main>

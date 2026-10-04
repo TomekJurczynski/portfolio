@@ -36,9 +36,16 @@ const showPaletteSwitcher = import.meta.env.PUBLIC_PALETTE_SWITCHER === 'true';
       <p>
         This site has an AI chat assistant. Messages you send it are processed by Anthropic's Claude
         API to generate a reply — only the message text and recent conversation history are sent, no
-        other personal data. Voice input is not available yet; if it's added later, this page will be
-        updated first with the specifics (likely: speech recognition processed by your browser's
-        vendor).
+        other personal data.
+      </p>
+      <p>
+        Voice is optional. If you tap the microphone, speech recognition is performed by your
+        browser, and depending on the browser (for example Chrome and Edge) your audio may be sent
+        to the browser vendor's speech service — this site never receives or stores the audio, only
+        the transcribed text that you then send like any other message. The microphone button also
+        reads the input level locally to animate itself; that audio is not recorded or sent
+        anywhere. Reading replies aloud uses your browser's built-in speech synthesis on your
+        device. Firefox has no speech recognition, so the microphone button is hidden there.
       </p>
     </section>
   </main>
