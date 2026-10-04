@@ -204,18 +204,33 @@ const { ownerName, i18n, otherLangHref } = Astro.props;
           if (isActive) link.setAttribute('aria-current', 'true');
         }
       };
+      // A short last section (Contact) may never reach the observer's mid-viewport band, so at the
+      // very bottom of the page the last section is active by definition.
+      const lastId = sections[sections.length - 1]!.id;
+      const atBottom = (): boolean => window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
       const observer = new IntersectionObserver(
         (entries) => {
           const visible = entries.filter((e) => e.isIntersecting);
           if (visible.length === 0) return;
           const topMost = visible.reduce((a, b) => (a.intersectionRatio > b.intersectionRatio ? a : b));
-          const id = topMost.target.id;
+          const id = atBottom() ? lastId : topMost.target.id;
           setActive(id);
           history.replaceState(null, '', `#${id}`);
         },
         { rootMargin: '-45% 0px -50% 0px' },
       );
       for (const section of sections) observer.observe(section);
+
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (atBottom() && location.hash !== `#${lastId}`) {
+            setActive(lastId);
+            history.replaceState(null, '', `#${lastId}`);
+          }
+        },
+        { passive: true },
+      );
     }
   }
 </script>

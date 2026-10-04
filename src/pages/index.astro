@@ -25,7 +25,7 @@ const showPaletteSwitcher = import.meta.env.PUBLIC_PALETTE_SWITCHER === 'true';
   description={profile.frontmatter.tagline}
   siteUrl={site.siteUrl}
   email={site.email}
-  person={{ name: site.ownerName, role: site.ownerRole, sameAs: [site.links.linkedin, site.links.github] }}
+  person={{ name: site.ownerName, role: site.ownerRole, sameAs: [site.links.linkedin] }}
 >
   <Header ownerName={site.ownerName} i18n={en} otherLangHref="/pl/" />
   <main id="main">
@@ -44,7 +44,7 @@ const showPaletteSwitcher = import.meta.env.PUBLIC_PALETTE_SWITCHER === 'true';
     />
     <Apps i18n={en} projects={projects} />
     <Cv i18n={en} lang="en" cv={cv} cvHref="/cv/cv-en.pdf" />
-    <Contact i18n={en} email={site.email} linkedin={site.links.linkedin} github={site.links.github} />
+    <Contact i18n={en} email={site.email} linkedin={site.links.linkedin} />
   </main>
   <Footer i18n={en} privacyHref="/privacy/" showPaletteSwitcher={showPaletteSwitcher} />
 </BaseLayout>

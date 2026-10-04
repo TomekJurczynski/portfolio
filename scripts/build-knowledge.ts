@@ -184,7 +184,7 @@ if (KNOWLEDGE.length > CHAR_BUDGET) {
 }
 
 const projectIds = [...enIds];
-const ALLOWED_LINK_IDS = [...projectIds, 'cv', 'email', 'linkedin', 'github'];
+const ALLOWED_LINK_IDS = [...projectIds, 'cv', 'email', 'linkedin'];
 const ALLOWED_NAV_IDS = ['top', 'about', 'apps', 'cv', 'contact', ...projectIds.map((id) => `app-${id}`)];
 
 // --- netlify/functions/lib/knowledge.generated.ts (consumed by /api/chat in M1) ---
@@ -207,7 +207,6 @@ const linkTargets: Record<string, { href: string; external: boolean }> = {
   cv: { href: '/cv/cv-en.pdf', external: false },
   email: { href: `mailto:${site.email}`, external: false },
   linkedin: { href: site.links.linkedin, external: true },
-  github: { href: site.links.github, external: true },
 };
 for (const [id, entry] of projectsByLang.en) {
   linkTargets[id] = { href: entry.frontmatter.url, external: true };
@@ -230,7 +229,6 @@ const linkLabels: Record<string, string> = {
   cv: 'CV',
   email: 'Email',
   linkedin: 'LinkedIn',
-  github: 'GitHub',
 };
 for (const [id, entry] of projectsByLang.en) {
   linkLabels[id] = entry.frontmatter.name;

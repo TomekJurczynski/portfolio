@@ -12,7 +12,6 @@ export const siteSchema = z.object({
   email: z.string().email(),
   links: z.object({
     linkedin: httpsUrl,
-    github: httpsUrl,
   }),
   siteUrl: httpsUrl,
 });
