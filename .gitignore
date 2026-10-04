@@ -20,3 +20,4 @@ deno.lock
 # not shared with the repo
 CLAUDE.md
 HANDOFF.md
+.lighthouseci/

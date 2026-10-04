@@ -38,6 +38,12 @@ jobs:
       - name: Build
         run: pnpm run build:all
 
+      - name: Size budgets
+        run: pnpm run budgets
+
+      - name: Lighthouse CI
+        run: pnpm run lighthouse
+
       - name: Install Playwright browser
         run: pnpm exec playwright install --with-deps chromium
 

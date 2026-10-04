@@ -3,7 +3,9 @@ import { defineConfig, devices } from '@playwright/test';
 // E2E runs against the built static site (`pnpm run build:all` first) served by
 // `astro preview`. /api/chat is never hit for real: every test mocks it via
 // page.route (see tests/e2e/helpers.ts), so no API cost and no Netlify needed.
-const PORT = 4321;
+// E2E_PORT lets you run next to a local `astro dev` on 4321 (reuseExistingServer would
+// otherwise silently test the dev server instead of the built site).
+const PORT = Number(process.env.E2E_PORT ?? 4321);
 
 export default defineConfig({
   testDir: './tests/e2e',

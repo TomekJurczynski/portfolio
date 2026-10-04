@@ -4,6 +4,8 @@
 // around their own section content, since each page already loads its own i18n/content.
 import '../styles/tokens.css';
 import '../styles/palettes.generated.css';
+import '../styles/fonts.css';
+import interLatinUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import ChatWidget from '../chat/ChatWidget';
 
 interface Person {
@@ -64,6 +66,7 @@ const ogImageUrl = new URL('/og/cover.png', siteUrl).toString();
     <link rel="alternate" hreflang="pl" href={new URL(plPath, siteUrl).toString()} />
     <link rel="alternate" hreflang="x-default" href={new URL(enPath, siteUrl).toString()} />
     <link rel="icon" href="/favicon.svg" />
+    <link rel="preload" href={interLatinUrl} as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
