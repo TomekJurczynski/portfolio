@@ -23,7 +23,7 @@ const { id, name, summary, stack, role, url, screenshots, sections, i18n } = Ast
 ---
 
 <article id={`app-${id}`} class="app-card" tabindex="-1">
-  <div class="screenshots">
+  <div class="screenshots" role="region" aria-label={`${name} — ${i18n.cta.screenshots}`} tabindex="0">
     {
       screenshots.map((s) => (
         <div class="screenshot-item">
