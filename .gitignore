@@ -8,6 +8,15 @@ dist/
 *.generated.css
 .DS_Store
 
+# Playwright output
+test-results/
+playwright-report/
+
 # Local Netlify folder
 .netlify
 deno.lock
+
+# Local working rules and session handoff notes for Claude Code — personal process notes,
+# not shared with the repo
+CLAUDE.md
+HANDOFF.md
