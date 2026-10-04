@@ -7,7 +7,7 @@
     "dev": "pnpm run knowledge && pnpm run palettes && netlify dev",
     "dev:astro-only": "pnpm run palettes && astro dev",
     "build": "astro build",
-    "build:all": "pnpm run knowledge && pnpm run palettes && astro build",
+    "build:all": "pnpm run knowledge && pnpm run palettes && astro build && node scripts/build-csp.mjs",
     "palettes": "tsx scripts/build-palettes.ts",
     "knowledge": "tsx scripts/build-knowledge.ts",
     "preview": "astro preview",

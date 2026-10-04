@@ -72,6 +72,8 @@ export default async (req: Request, _context: Context): Promise<Response> => {
 
   const encoder = new TextEncoder();
   let outputChars = 0;
+  // Aborted when the client disconnects (Stop button / closed tab) so we stop paying for tokens.
+  const upstream = new AbortController();
 
   const body = new ReadableStream<Uint8Array>({
     async start(controller) {
@@ -82,6 +84,7 @@ export default async (req: Request, _context: Context): Promise<Response> => {
           messages: history,
           maxTokens: MAX_OUTPUT_TOKENS,
           temperature: TEMPERATURE,
+          signal: upstream.signal,
         })) {
           outputChars += delta.length;
           controller.enqueue(encoder.encode(JSON.stringify({ type: 'delta', text: delta }) + '\n'));
@@ -103,6 +106,9 @@ export default async (req: Request, _context: Context): Promise<Response> => {
           }),
         );
       }
+    },
+    cancel() {
+      upstream.abort();
     },
   });
 

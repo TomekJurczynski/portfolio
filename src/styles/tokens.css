@@ -93,6 +93,15 @@ body {
   padding-inline: var(--gutter);
 }
 
+.page-section {
+  padding-block: var(--space-7);
+}
+
+.page-section-notfound {
+  padding-block: var(--space-8);
+  text-align: center;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
