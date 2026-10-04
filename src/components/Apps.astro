@@ -2,6 +2,8 @@
 import { parseSections, type ProjectEntry } from '../content/loader';
 import type { I18n } from '../i18n/types';
 import AppCard from './AppCard.astro';
+import FeaturedCard from './FeaturedCard.astro';
+import Lightbox from './Lightbox.astro';
 
 interface Props {
   i18n: I18n;
@@ -9,21 +11,46 @@ interface Props {
 }
 
 const { i18n, projects } = Astro.props;
+
+// Rows top to bottom: featured (this site) → phone apps (3-up grid) → workflow (n8n).
+const byLayout = (layout: string) => projects.filter((p) => p.frontmatter.layout === layout);
+const featured = byLayout('featured');
+const mobile = byLayout('mobile');
+const workflows = byLayout('workflow');
 ---
 
 <section id="apps" class="apps">
   <div class="container">
     <h2>{i18n.nav.apps}</h2>
+    {
+      featured.length > 0 && (
+        <div class="apps-stack">
+          {featured.map((p) => (
+            <FeaturedCard
+              id={p.frontmatter.id}
+              name={p.frontmatter.name}
+              summary={p.frontmatter.summary}
+              stack={p.frontmatter.stack}
+              role={p.frontmatter.role}
+              url={p.frontmatter.url}
+              screenshots={p.frontmatter.screenshots}
+              sections={parseSections(p.body)}
+              i18n={i18n}
+            />
+          ))}
+        </div>
+      )
+    }
     <div class="apps-grid">
       {
-        projects.map((p) => (
+        mobile.map((p) => (
           <AppCard
             id={p.frontmatter.id}
             name={p.frontmatter.name}
             summary={p.frontmatter.summary}
             stack={p.frontmatter.stack}
             role={p.frontmatter.role}
-            url={p.frontmatter.url}
+            url={p.frontmatter.url!}
             screenshots={p.frontmatter.screenshots}
             sections={parseSections(p.body)}
             i18n={i18n}
@@ -31,7 +58,27 @@ const { i18n, projects } = Astro.props;
         ))
       }
     </div>
+    {
+      workflows.length > 0 && (
+        <div class="apps-stack">
+          {workflows.map((p) => (
+            <FeaturedCard
+              id={p.frontmatter.id}
+              name={p.frontmatter.name}
+              summary={p.frontmatter.summary}
+              stack={p.frontmatter.stack}
+              role={p.frontmatter.role}
+              url={p.frontmatter.url}
+              screenshots={p.frontmatter.screenshots}
+              sections={parseSections(p.body)}
+              i18n={i18n}
+            />
+          ))}
+        </div>
+      )
+    }
   </div>
+  <Lightbox i18n={i18n} />
 </section>
 
 <script>
@@ -49,6 +96,11 @@ const { i18n, projects } = Astro.props;
 <style>
   .apps {
     padding-block: var(--space-7);
+  }
+  .apps-stack {
+    display: grid;
+    gap: var(--space-5);
+    margin-top: var(--space-5);
   }
   .apps-grid {
     display: grid;

@@ -184,7 +184,9 @@ if (KNOWLEDGE.length > CHAR_BUDGET) {
 }
 
 const projectIds = [...enIds];
-const ALLOWED_LINK_IDS = [...projectIds, 'cv', 'email', 'linkedin'];
+// Only projects with a live app can be offered as a link; every project can still be a nav target.
+const linkableProjectIds = [...projectsByLang.en.values()].filter((p) => p.frontmatter.url).map((p) => p.frontmatter.id);
+const ALLOWED_LINK_IDS = [...linkableProjectIds, 'cv', 'email', 'linkedin'];
 const ALLOWED_NAV_IDS = ['top', 'about', 'apps', 'cv', 'contact', ...projectIds.map((id) => `app-${id}`)];
 
 // --- netlify/functions/lib/knowledge.generated.ts (consumed by /api/chat in M1) ---
@@ -209,7 +211,7 @@ const linkTargets: Record<string, { href: string; external: boolean }> = {
   linkedin: { href: site.links.linkedin, external: true },
 };
 for (const [id, entry] of projectsByLang.en) {
-  linkTargets[id] = { href: entry.frontmatter.url, external: true };
+  if (entry.frontmatter.url) linkTargets[id] = { href: entry.frontmatter.url, external: true };
 }
 
 const navTargets: Record<string, string> = {
@@ -231,7 +233,7 @@ const linkLabels: Record<string, string> = {
   linkedin: 'LinkedIn',
 };
 for (const [id, entry] of projectsByLang.en) {
-  linkLabels[id] = entry.frontmatter.name;
+  if (entry.frontmatter.url) linkLabels[id] = entry.frontmatter.name;
 }
 
 const actionsOutPath = join(root, 'src', 'chat', 'actions.generated.ts');

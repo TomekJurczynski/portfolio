@@ -12,8 +12,10 @@ const budgets = [
   { name: 'JavaScript (total, gzip)', match: /\.js$/, dir: '_astro', total: true, max: 100 * KB, gzip: true },
   { name: 'CSS (total, gzip)', match: /\.css$/, dir: '_astro', total: true, max: 8 * KB, gzip: true },
   { name: 'Fonts (each, woff2)', match: /\.woff2$/, dir: '_astro', max: 90 * KB },
-  { name: 'Screenshots (each, webp)', match: /\.webp$/, dir: 'images', max: 50 * KB },
-  { name: 'HTML pages (each, gzip)', match: /\.html$/, dir: '.', max: 15 * KB, gzip: true },
+  { name: 'Images 360/720 (each, webp)', match: /-(360|720)\.webp$/, dir: 'images', max: 60 * KB },
+  // Only the wide diagrams (workflow, architecture) have a 1120 px variant; text-heavy, so heavier.
+  { name: 'Images 1120 (each, webp)', match: /-1120\.webp$/, dir: 'images', max: 100 * KB },
+  { name: 'HTML pages (each, gzip)', match: /\.html$/, dir: '.', max: 20 * KB, gzip: true },
 ];
 
 async function walk(dir) {

@@ -49,20 +49,37 @@ export type CvFrontmatter = z.infer<typeof cvFrontmatterSchema>;
 export const screenshotSchema = z.object({
   src: z.string().min(1),
   alt: z.string().min(1),
+  // Intrinsic size, only needed for non-phone images (phone screenshots default to 720×1529).
+  width: z.number().int().positive().optional(),
+  height: z.number().int().positive().optional(),
 });
 
-export const projectFrontmatterSchema = z.object({
+// `mobile`: a phone-app card (3-up grid, screenshots + live app link).
+// `featured` / `workflow`: a full-width 3-column row (text over 2 columns, one image column);
+// shown above / below the mobile grid. Those have no live app, so `url` is optional for them.
+export const PROJECT_LAYOUTS = ['mobile', 'featured', 'workflow'] as const;
+
+export const projectFrontmatterSchema = z
+  .object({
   id: z
     .string()
     .regex(/^[a-z0-9-]+$/, 'id must be kebab-case'),
   name: z.string().min(1),
   order: z.number().int(),
-  url: httpsUrl,
+  layout: z.enum(PROJECT_LAYOUTS).default('mobile'),
+  url: httpsUrl.optional(),
   summary: z.string().max(140),
   stack: z.array(z.string()).min(1),
   role: z.string().min(1),
-  screenshots: z.array(screenshotSchema).min(2).max(3),
-});
+  screenshots: z.array(screenshotSchema).min(1).max(3),
+  })
+  .superRefine((p, ctx) => {
+    if (p.layout !== 'mobile') return;
+    if (!p.url) ctx.addIssue({ code: 'custom', path: ['url'], message: 'mobile projects need a url' });
+    if (p.screenshots.length < 2) {
+      ctx.addIssue({ code: 'custom', path: ['screenshots'], message: 'mobile projects need 2-3 screenshots' });
+    }
+  });
 export type ProjectFrontmatter = z.infer<typeof projectFrontmatterSchema>;
 
 export const faqEntrySchema = z.object({

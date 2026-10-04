@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- Source of public/images/projects/portfolio/architecture.png (600 px wide, rendered at 2x).
+     Render: node scripts/render-diagram.mjs  (then `pnpm run images`) -->
+<style>
+  @font-face { font-family: 'Inter Variable'; font-weight: 100 900; src: url('../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2-variations'); }
+  html, body { margin: 0; background: #0B0F17; }
+  body { width: 600px; padding: 28px 28px 32px; box-sizing: border-box; font-family: 'Inter Variable', Inter, 'Segoe UI', system-ui, sans-serif; color: #E8ECF1; }
+  .tag { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #B58CFF; font-weight: 700; margin: 0 0 10px; }
+  .box { border: 1px solid #2A3550; border-radius: 14px; background: #121A2A; padding: 16px 18px; }
+  .box h3 { margin: 0 0 6px; font-size: 19px; line-height: 1.2; }
+  .box p { margin: 0; font-size: 15px; line-height: 1.4; color: #9AA7BC; }
+  .accent { border-color: #7A5CFF; background: linear-gradient(180deg, #1A1F3D, #121A2A); }
+  .claude { border-color: #FF8FC7; background: linear-gradient(180deg, #2A1830, #121A2A); }
+  .arrow { text-align: center; color: #9AA7BC; font-size: 14px; line-height: 1; padding: 9px 0; }
+  .arrow b { display: block; color: #E8ECF1; font-size: 22px; line-height: 0.9; margin-top: 3px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip { font-size: 13px; padding: 4px 10px; border-radius: 999px; border: 1px solid #34425F; color: #C9D3E4; background: #0E1524; }
+  .build { margin-bottom: 18px; }
+</style>
+</head>
+<body>
+  <div class="build">
+    <p class="tag">Build time</p>
+    <div class="box">
+      <h3>content/ → Zod → generated files</h3>
+      <p>Markdown + JSON is validated, then compiled into the agent's knowledge, its system prompt and the whitelist of allowed link and navigation ids.</p>
+    </div>
+  </div>
+
+  <p class="tag">Browser</p>
+  <div class="box">
+    <h3>Static Astro site + React chat island</h3>
+    <p>EN / PL pages, chat state machine, streaming parser, voice (Web Speech).</p>
+    <div class="chips"><span class="chip">Cosmos dark</span><span class="chip">WCAG 2.2 AA</span><span class="chip">no cookies</span></div>
+  </div>
+
+  <div class="arrow">POST /api/chat · NDJSON stream back<b>↕</b></div>
+
+  <p class="tag">Netlify Function</p>
+  <div class="box accent">
+    <h3>Guarded gateway</h3>
+    <p>Validates the request, strips marker characters from history, adds the cached system prompt, streams the reply, logs no message content.</p>
+    <div class="chips"><span class="chip">Zod · 8 KB cap</span><span class="chip">origin allow-list</span><span class="chip">20 req/h per IP</span><span class="chip">abort on disconnect</span></div>
+  </div>
+
+  <div class="arrow">system prompt + knowledge (cached) + last 8 messages<b>↓</b></div>
+
+  <div class="box claude">
+    <h3>Claude Haiku 4.5</h3>
+    <p>Text only, no tools. Never writes URLs: it points with <code>{{link:id}}</code> / <code>{{nav:id}}</code> markers.</p>
+  </div>
+
+  <div class="arrow">reply streams back with markers<b>↓</b></div>
+
+  <div class="box">
+    <h3>Client turns markers into buttons</h3>
+    <p>Checked against the whitelist: unknown ids are dropped, at most two actions per answer.</p>
+  </div>
+</body>
+</html>

@@ -14,7 +14,9 @@
     "details": "Szczegóły",
     "hideDetails": "Ukryj szczegóły",
     "copyEmail": "Kopiuj e-mail",
-    "copied": "Skopiowano"
+    "copied": "Skopiowano",
+    "openImage": "Otwórz obraz w pełnym rozmiarze",
+    "closeImage": "Zamknij obraz"
   },
   "langSwitch": "English",
   "menu": {

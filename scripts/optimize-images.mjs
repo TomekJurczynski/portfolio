@@ -8,7 +8,8 @@ import { readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 const ROOT = 'public/images/projects';
-const WIDTHS = [360, 720];
+// Phone screenshots (1080 px wide) get 360/720; wide diagrams (workflow screenshot) also get 1120.
+const WIDTHS = [360, 720, 1120];
 
 let totalIn = 0;
 let totalOut = 0;
@@ -19,7 +20,8 @@ for (const app of await readdir(ROOT)) {
     if (!file.endsWith('.jpg')) continue;
     const src = path.join(dir, file);
     totalIn += (await stat(src)).size;
-    for (const width of WIDTHS) {
+    const { width: sourceWidth } = await sharp(src).metadata();
+    for (const width of WIDTHS.filter((w) => w <= sourceWidth)) {
       const out = path.join(dir, file.replace(/\.jpg$/, `-${width}.webp`));
       await sharp(src).resize({ width }).webp({ quality: 78 }).toFile(out);
       totalOut += (await stat(out)).size;

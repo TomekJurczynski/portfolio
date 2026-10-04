@@ -78,16 +78,7 @@ const webp = (src: string, width: number) => src.replace(/\.jpg$/, `-${width}.we
 </article>
 
 <script>
-  document.querySelectorAll<HTMLButtonElement>('.details-toggle').forEach((button) => {
-    const panel = document.getElementById(button.getAttribute('aria-controls') ?? '');
-    if (!panel) return;
-    button.addEventListener('click', () => {
-      const expanded = button.getAttribute('aria-expanded') === 'true';
-      button.setAttribute('aria-expanded', String(!expanded));
-      panel.hidden = expanded;
-      button.textContent = expanded ? button.dataset.labelShow! : button.dataset.labelHide!;
-    });
-  });
+  import '../scripts/detailsToggle';
 </script>
 
 <style>

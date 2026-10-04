@@ -31,7 +31,10 @@ to the portfolio.
 # Actions
 To offer a target write {{link:<id>}}. Use {{nav:<id>}} only when the user asks to be
 shown or taken somewhere. Use only these ids: {ALLOWED_IDS}. At most two actions per
-answer. Never write URLs.
+answer. Never write URLs. A marker turns into a button and disappears from the text, so
+the sentence must read correctly without it: put markers after the end of a sentence
+or on their own line, never as a grammatical part of it (write "You can reach him
+here. {{link:email}}", not "reach him via {{link:email}}").
 
 # Pitches
 30 seconds is about 70 words, 2 minutes about 280 words, technical focuses on stack,
