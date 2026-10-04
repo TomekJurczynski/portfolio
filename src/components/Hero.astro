@@ -14,21 +14,60 @@ const { ownerName, ownerRole, tagline, i18n, cvHref } = Astro.props;
 
 <section id="top" class="hero">
   <div class="container hero-inner">
-    <p class="eyebrow">{ownerRole}</p>
-    <h1>{ownerName}</h1>
-    <p class="tagline">{tagline}</p>
-    <div class="cta-row">
-      {/* ChatWidget (BaseLayout) listens for [data-chat-cta] clicks and opens the chat panel;
-          href="#contact" is the no-JS/pre-hydration fallback. */}
-      <a class="btn btn-primary" data-chat-cta href="#contact">{i18n.cta.askAgent}</a>
-      <a class="btn btn-secondary" href={cvHref} download>{i18n.cta.downloadCv}</a>
+    <div class="hero-text">
+      <p class="eyebrow">{ownerRole}</p>
+      <h1>{ownerName}</h1>
+      <p class="tagline">{tagline}</p>
+      <div class="cta-row">
+        {/* ChatWidget (BaseLayout) listens for [data-chat-cta] clicks and opens the chat panel;
+            href="#contact" is the no-JS/pre-hydration fallback. */}
+        <a class="btn btn-primary" data-chat-cta href="#contact">{i18n.cta.askAgent}</a>
+        <a class="btn btn-secondary" href={cvHref} download>{i18n.cta.downloadCv}</a>
+      </div>
     </div>
+    {/* Desktop only (display: none below 900px; lazy images that are display:none are not fetched). */}
+    <picture class="portrait">
+      <source type="image/webp" srcset="/images/profile/tomasz-360.webp 360w, /images/profile/tomasz-720.webp 720w" sizes="280px" />
+      <img
+        src="/images/profile/tomasz-720.webp"
+        alt={i18n.hero.photoAlt}
+        width="280"
+        height="280"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
   </div>
 </section>
 
 <style>
   .hero {
     padding-block: var(--space-8) var(--space-7);
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: var(--space-7);
+  }
+  .portrait {
+    display: none;
+  }
+  @media (min-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr auto;
+    }
+    .portrait {
+      display: block;
+    }
+    .portrait img {
+      display: block;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border-strong);
+    }
   }
   .eyebrow {
     color: var(--accent-text);

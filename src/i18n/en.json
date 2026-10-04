@@ -6,6 +6,9 @@
     "cv": "CV",
     "contact": "Contact"
   },
+  "hero": {
+    "photoAlt": "Portrait of Tomasz Jurczyński"
+  },
   "cta": {
     "downloadCv": "Download CV",
     "askAgent": "Ask the agent",

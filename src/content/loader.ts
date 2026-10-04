@@ -51,7 +51,7 @@ export interface ProjectEntry {
 /** Splits a profile.md-style body into paragraphs (blank-line separated). */
 export function splitParagraphs(body: string): string[] {
   return body
-    .split(/\n{2,}/)
+    .split(/(?:\r?\n){2,}/)
     .map((p) => p.trim())
     .filter(Boolean);
 }

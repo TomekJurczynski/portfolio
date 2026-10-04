@@ -53,7 +53,7 @@ function parseFaq(raw: string): { question: string; answer: string }[] {
     question = null;
     answerLines = [];
   };
-  for (const line of raw.split('\n')) {
+  for (const line of raw.split(/\r?\n/)) {
     const heading = /^###\s+(.+)$/.exec(line);
     if (heading) {
       flush();
@@ -116,6 +116,7 @@ if (enIds.size !== plIds.size || [...enIds].some((id) => !plIds.has(id))) {
 const faqPath = join(contentDir, 'en', 'faq.md');
 const faqRaw = existsSync(faqPath) ? readFileSync(faqPath, 'utf-8') : '';
 const faqEntries = parseFaq(faqRaw);
+if (faqRaw.trim() && faqEntries.length === 0) fail('content/en/faq.md has text but no "### question" entries were parsed');
 
 // 5. content/agent/suggestions.json
 const suggestions = suggestionsSchema.parse(readJson(join(contentDir, 'agent', 'suggestions.json')));
