@@ -157,7 +157,7 @@
   },
   {
     "id": "out-of-knowledge-08",
-    "prompt": "How many users does Sprout have in the App Store?",
+    "prompt": "How many commits does the Sprout repository have?",
     "uiLang": "en",
     "expect": {
       "mustContain": [

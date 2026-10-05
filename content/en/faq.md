@@ -24,7 +24,7 @@ A role in AI where he can grow professionally: building software and automating 
 
 ### Where is he based?
 
-In Wrocław, Poland.
+He lives in Wrocław, Poland. In Polish, say "mieszka we Wrocławiu" (not "w Wrocławiu") and, if you add the country, "w Polsce" (not "Wrocławiu, Polsce").
 
 ### Does he work remotely or on site?
 
@@ -53,6 +53,10 @@ Yes. At Consdata he is building an AI agent with Claude Code that checks a bank'
 ### What integration or migration experience does he have?
 
 At Consdata he migrated 12 banking processes from a Java-based ServiceMix integration to BPMS processes using soap-proxy. The processes call soap-proxy through JavaScript handlers written in Eximee script code. He wrote the soap-proxy configuration (openapi.yaml and soapproxy.yaml) and the SOAP envelope templates. Nothing more is known about the technical details beyond this, and the client is not named.
+
+### Are his apps available in an app store?
+
+No. None of his apps (Lexicon, Sprout, WhereItWent) is published in the App Store, Google Play or any other store. They are personal projects that he installs and uses himself. Nothing is known about user numbers or downloads, because there is no public distribution.
 
 ### Which AI coding tools does he use?
 

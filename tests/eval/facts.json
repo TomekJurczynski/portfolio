@@ -1,0 +1,242 @@
+[
+  {
+    "id": "facts-01-remote-en",
+    "prompt": "Does Tomasz work remotely?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "remote"
+      ],
+      "mustMatchAny": [
+        "prefers?",
+        "strongly"
+      ],
+      "maxWords": 100,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-02-remote-pl",
+    "prompt": "Czy Tomasz szuka pracy zdalnej, czy biurowej?",
+    "uiLang": "pl",
+    "expect": {
+      "mustContain": [
+        "zdaln"
+      ],
+      "maxWords": 100,
+      "language": "pl"
+    }
+  },
+  {
+    "id": "facts-03-languages-en",
+    "prompt": "Which languages does he speak?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "C1",
+        "A1",
+        "German",
+        "Italian"
+      ],
+      "maxWords": 100,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-04-languages-pl",
+    "prompt": "Jakie zna języki obce i na jakim poziomie?",
+    "uiLang": "pl",
+    "expect": {
+      "mustContain": [
+        "C1",
+        "A1"
+      ],
+      "mustMatchAny": [
+        "niemiec",
+        "włosk"
+      ],
+      "maxWords": 100,
+      "language": "pl"
+    }
+  },
+  {
+    "id": "facts-05-german-level",
+    "prompt": "Does he speak German fluently?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "A1"
+      ],
+      "mustNotMatch": [
+        "\\bC1\\b.{0,25}German",
+        "German.{0,25}\\bC1\\b"
+      ],
+      "maxWords": 100,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-06-notice-period-en",
+    "prompt": "What is his notice period?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustNotMatch": [
+        "\\b\\d+\\s*(-|to)?\\s*(month|months|week|weeks)\\b"
+      ],
+      "maxWords": 80,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-07-availability-pl",
+    "prompt": "Od kiedy Tomasz mógłby zacząć u nas pracę?",
+    "uiLang": "pl",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustNotMatch": [
+        "\\b\\d+\\s*(-|do)?\\s*(miesi|tygod|dni)"
+      ],
+      "maxWords": 80,
+      "language": "pl"
+    }
+  },
+  {
+    "id": "facts-08-figma-agent-results-en",
+    "prompt": "What results did his Figma UI-audit agent achieve? How much time did it save the bank?",
+    "uiLang": "en",
+    "expect": {
+      "mustMatchAny": [
+        "not (yet )?(finished|complete)",
+        "just (started|begun)",
+        "only just",
+        "no results",
+        "early stage",
+        "in progress"
+      ],
+      "mustNotMatch": [
+        "\\d+\\s*%",
+        "\\d+\\s*(hours|days)"
+      ],
+      "maxWords": 110,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-09-figma-agent-results-pl",
+    "prompt": "Jakie efekty dał agent AI do audytu UI z Figmy? Ile to zaoszczędziło?",
+    "uiLang": "pl",
+    "expect": {
+      "mustMatchAny": [
+        "dopiero",
+        "nie (jest )?(jeszcze )?(zakończ|ukończ)",
+        "brak (jeszcze )?wyników",
+        "nie ma jeszcze",
+        "w trakcie"
+      ],
+      "mustNotMatch": [
+        "\\d+\\s*%",
+        "\\d+\\s*(godzin|dni)"
+      ],
+      "maxWords": 110,
+      "language": "pl"
+    }
+  },
+  {
+    "id": "facts-10-client-name",
+    "prompt": "Which bank is that agent built for?",
+    "uiLang": "en",
+    "expect": {
+      "mustMatchAny": [
+        "not named",
+        "isn't named",
+        "is not (publicly )?(named|known|specified)",
+        "don't (have|know)",
+        "do not (have|know)",
+        "no information"
+      ],
+      "mustNotMatch": [
+        "confidential",
+        "poufn",
+        "NDA"
+      ],
+      "maxWords": 90,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-11-migration",
+    "prompt": "How many processes did he migrate from ServiceMix and what was the target?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "12",
+        "soap-proxy"
+      ],
+      "maxWords": 120,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-12-migration-unknown-detail",
+    "prompt": "How many requests per second does the soap-proxy handle after the migration?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustNotMatch": [
+        "\\d+\\s*(requests|req)"
+      ],
+      "maxWords": 90,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-13-location",
+    "prompt": "W jakim mieście mieszka Tomasz?",
+    "uiLang": "pl",
+    "expect": {
+      "mustContain": [
+        "Wrocław"
+      ],
+      "maxWords": 70
+    }
+  },
+  {
+    "id": "facts-14-app-store-en",
+    "prompt": "How many users does Sprout have in the App Store?",
+    "uiLang": "en",
+    "expect": {
+      "mustMatchAny": [
+        "not (published|available|distributed)",
+        "isn't (published|available)",
+        "no public",
+        "not in (the|any)"
+      ],
+      "mustNotMatch": [
+        "\\d+\\s*(users|downloads)"
+      ],
+      "maxWords": 90,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-15-location-pl-grammar",
+    "prompt": "Gdzie mieszka Tomasz?",
+    "uiLang": "pl",
+    "expect": {
+      "mustContain": [
+        "we Wrocławiu"
+      ],
+      "mustNotMatch": [
+        "w Wrocławiu"
+      ],
+      "maxWords": 70
+    }
+  }
+]

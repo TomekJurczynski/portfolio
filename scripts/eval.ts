@@ -139,7 +139,8 @@ async function main() {
         text = await ask(provider, c);
         fails = [...universalFailures(text), ...caseFailures(text, c.expect)];
       } catch (err) {
-        fails = [`request failed: ${err instanceof Error ? err.name : 'unknown'}`];
+        const status = (err as { status?: number })?.status;
+        fails = [`request failed: ${err instanceof Error ? err.name : 'unknown'}${status ? ` (HTTP ${status})` : ''}`];
       }
       const warns = warnings(text);
       if (fails.length) failed++;
