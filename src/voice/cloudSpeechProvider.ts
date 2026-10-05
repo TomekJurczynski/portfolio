@@ -148,8 +148,10 @@ export class CloudSpeechProvider implements VoiceProvider {
         played += 1;
       }
       this.finishCloud(generation);
-    } catch {
+    } catch (err) {
       if (generation !== this.generation) return; // cancelled — not a failure
+      // Only the failure reason (e.g. "speak http 502", "NotAllowedError") — never the reply text.
+      console.warn('cloud voice failed, using browser voice:', err instanceof Error ? `${err.name}: ${err.message}` : 'unknown');
       // Cloud voice failed part-way: read what is left with the browser voice, never go silent.
       this.cloudActive = false;
       this.releaseObjectUrl();

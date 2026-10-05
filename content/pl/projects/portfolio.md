@@ -12,6 +12,7 @@ stack:
   - "Claude API (Haiku 4.5)"
   - "Zod"
   - "Web Speech API"
+  - "ElevenLabs TTS"
   - "Playwright"
   - "axe-core"
   - "Vitest"
@@ -34,11 +35,11 @@ Zwykłe portfolio wymaga od zapracowanego rekrutera przeczytania wszystkiego, a 
 
 ## Decyzje
 
-Specyfikacja przed kodem: dokument wymagań i specyfikacja techniczna z identyfikatorami wymagań, kryteriami akceptacji i planem 20 zadań w pięciu kamieniach milowych powstały przed pierwszą linijką kodu, a agenci AI implementowali według nich. Agent odpowiada wyłącznie na podstawie wiedzy kompilowanej podczas budowy z plików treści walidowanych w Zod, mówi o Tomaszu w trzeciej osobie i zamiast zgadywać, mówi „nie mam takiej informacji". Strona jest statyczna: tylko czat jest wyspą JavaScriptu, więc całość działa nawet wtedy, gdy API jest niedostępne. Głos stoi za interfejsem dostawcy (dziś mowa przeglądarki, później lepszy lub realtime'owy dostawca) bez zmian w interfejsie, a pytanie wpisane dostaje odpowiedź tekstową, natomiast wypowiedziane jest czytane na głos.
+Specyfikacja przed kodem: dokument wymagań i specyfikacja techniczna z identyfikatorami wymagań, kryteriami akceptacji i planem 20 zadań w pięciu kamieniach milowych powstały przed pierwszą linijką kodu, a agenci AI implementowali według nich. Agent odpowiada wyłącznie na podstawie wiedzy kompilowanej podczas budowy z plików treści walidowanych w Zod, mówi o Tomaszu w trzeciej osobie i zamiast zgadywać, mówi „nie mam takiej informacji". Strona jest statyczna: tylko czat jest wyspą JavaScriptu, więc całość działa nawet wtedy, gdy API jest niedostępne. Głos stoi za interfejsem dostawcy: mikrofon korzysta z rozpoznawania mowy w przeglądarce, a odpowiedzi czyta na głos ElevenLabs przez chronioną funkcję Netlify, więc klucz dostawcy nigdy nie trafia do przeglądarki. Jeśli głos z chmury zawiedzie z jakiegokolwiek powodu, ten sam tekst czyta głos przeglądarki, więc odpowiedź nigdy nie ginie po cichu. Dostawcę wybrałem na słuch: Google Chirp 3 HD czytał angielskie słowa w polskich zdaniach polskimi głoskami, a ElevenLabs radził sobie z oboma językami wyraźnie lepiej. Pytanie wpisane dostaje odpowiedź tekstową z przyciskiem głośnika na żądanie, natomiast wypowiedziane jest czytane na głos.
 
 ## Bezpieczeństwo i koszty
 
-Model nigdy nie pisze adresów URL. Wskazuje cele znacznikami linków i nawigacji, które klient mapuje na białą listę zbudowaną z treści, a klient pokazuje najwyżej dwie akcje na odpowiedź. Backend waliduje każde żądanie, usuwa znaki znaczników z historii przysłanej przez klienta, żeby sfałszowana wiadomość asystenta nie mogła podrzucić znacznika, wymusza listę dozwolonych źródeł i 20 żądań na godzinę z jednego adresu IP oraz loguje wyłącznie status, czas i długość, nigdy treść wiadomości. Rygorystyczna polityka Content-Security-Policy bez unsafe-inline jest generowana podczas budowy ze skrótów każdego skryptu i stylu inline. Koszt ogranicza Claude Haiku 4.5, cache'owany prompt systemowy, limit 400 tokenów odpowiedzi i historia 8 wiadomości; zamknięcie czatu przerywa zapytanie do modelu, więc żadne tokeny się nie marnują.
+Model nigdy nie pisze adresów URL. Wskazuje cele znacznikami linków i nawigacji, które klient mapuje na białą listę zbudowaną z treści, a klient pokazuje najwyżej dwie akcje na odpowiedź. Backend waliduje każde żądanie, usuwa znaki znaczników z historii przysłanej przez klienta, żeby sfałszowana wiadomość asystenta nie mogła podrzucić znacznika, wymusza listę dozwolonych źródeł i limity na adres IP (20 żądań czatu i 120 żądań głosu na godzinę) oraz loguje wyłącznie status, czas i długość, nigdy treść wiadomości. Rygorystyczna polityka Content-Security-Policy bez unsafe-inline jest generowana podczas budowy ze skrótów każdego skryptu i stylu inline. Koszt ogranicza Claude Haiku 4.5, cache'owany prompt systemowy, limit 400 tokenów odpowiedzi i historia 8 wiadomości; zamknięcie czatu przerywa zapytanie do modelu, więc żadne tokeny się nie marnują.
 
 ## Wyzwania
 
@@ -46,8 +47,8 @@ Strumieniowanie: pojedyncza porcja może przeciąć znacznik w połowie, więc p
 
 ## Bramki jakości
 
-Ponad 40 testów jednostkowych; około 40 scenariuszy end-to-end na desktopie i w widoku mobilnym 390 px z zamockowanym strumieniem czatu, więc nic nie kosztują; audyty dostępności axe względem WCAG 2.2 AA w obu językach, obu motywach i z otwartym czatem, które wychwyciły i naprawiły u źródła zbyt niski kontrast tokenów; Lighthouse na poziomie 100 we wszystkich czterech kategoriach na desktopie, z LCP 0,6 s; budżety rozmiarów egzekwowane w CI; oraz zestaw 42 przypadków ewaluacyjnych, który przepuszcza prawdziwy model przez odmowy, pytania spoza bazy, języki, prośby o adresy URL i ataki prompt injection.
+Ponad 60 testów jednostkowych; około 50 scenariuszy end-to-end na desktopie i w widoku mobilnym 390 px z zamockowanym strumieniem czatu, więc nic nie kosztują; audyty dostępności axe względem WCAG 2.2 AA w obu językach, obu motywach i z otwartym czatem, które wychwyciły i naprawiły u źródła zbyt niski kontrast tokenów; Lighthouse na poziomie 100 we wszystkich czterech kategoriach na desktopie, z LCP 0,6 s; budżety rozmiarów egzekwowane w CI; oraz zestaw 57 przypadków ewaluacyjnych, który przepuszcza prawdziwy model przez odmowy, pytania spoza bazy, języki, prośby o adresy URL i ataki prompt injection.
 
 ## Wynik
 
-Szybka, dostępna, dwujęzyczna strona, której sercem jest agent trzymający się tematu, odmawiający tego, czego powinien, przyznający się do braku wiedzy i obsługiwany głosem. To zarazem najwyraźniejsza demonstracja sposobu pracy Tomasza: jest właścicielem wymagań, kompromisów i każdej decyzji produktowej, testuje na prawdziwych urządzeniach i kieruje agentami AI tak, by dostarczali wyniki klasy produkcyjnej. Następny na liście jest lepszy, neuronowy głos do czytania odpowiedzi.
+Szybka, dostępna, dwujęzyczna strona, której sercem jest agent trzymający się tematu, odmawiający tego, czego powinien, przyznający się do braku wiedzy i obsługiwany głosem. To zarazem najwyraźniejsza demonstracja sposobu pracy Tomasza: jest właścicielem wymagań, kompromisów i każdej decyzji produktowej, testuje na prawdziwych urządzeniach i kieruje agentami AI tak, by dostarczali wyniki klasy produkcyjnej.
