@@ -12,7 +12,7 @@
     "knowledge": "tsx scripts/build-knowledge.ts",
     "preview": "astro preview",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "astro sync && tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "pnpm run build:all && playwright test",
     "eval": "tsx --env-file=.env scripts/eval.ts",
