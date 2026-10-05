@@ -116,9 +116,24 @@ export class WebSpeechProvider implements VoiceProvider {
     return typeof window !== 'undefined' && 'speechSynthesis' in window;
   }
 
-  /** Current mic volume (0-1), for VoiceOrb — 0 when not listening or unavailable. */
+  /**
+   * Phones and tablets let only one capture hold the microphone: opening getUserMedia next to
+   * SpeechRecognition makes recognition fail or end at once (seen on Android Chrome). So the
+   * cosmetic level meter is skipped there and the orb uses a gentle simulated pulse instead.
+   */
+  private static micMayBeShared(): boolean {
+    if (typeof navigator === 'undefined') return false;
+    const touchOnly = typeof window.matchMedia === 'function' && window.matchMedia('(pointer: coarse)').matches;
+    return !touchOnly && !/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  }
+
+  /** Current mic volume (0-1), for VoiceOrb. Simulated while listening without a real meter; 0 otherwise. */
   getAudioLevel(): number {
-    if (!this.analyser || !this.micData) return 0;
+    if (!this.analyser || !this.micData) {
+      if (!this.recognition) return 0;
+      const t = performance.now() / 1000;
+      return 0.22 + 0.12 * Math.sin(t * 5.1) + 0.06 * Math.sin(t * 8.3);
+    }
     this.analyser.getByteTimeDomainData(this.micData);
     let sum = 0;
     for (const value of this.micData) {
@@ -197,7 +212,7 @@ export class WebSpeechProvider implements VoiceProvider {
     }
 
     this.currentLang = opts.lang;
-    void this.startMicLevelMeter();
+    if (WebSpeechProvider.micMayBeShared()) void this.startMicLevelMeter();
     const recognition = new Recognition();
     recognition.lang = opts.lang;
     recognition.continuous = false;

@@ -260,5 +260,65 @@
       "maxWords": 110,
       "language": "en"
     }
+  },
+  {
+    "id": "facts-17-name-variant-thomas",
+    "prompt": "tell me something about Thomas Hobbies",
+    "uiLang": "en",
+    "expect": {
+      "mustMatchAny": [
+        "basketball",
+        "volleyball",
+        "sailing",
+        "escape room",
+        "photography",
+        "cooking",
+        "n8n"
+      ],
+      "mustNotMatch": [
+        "don't have (any )?information about Thomas"
+      ],
+      "maxWords": 120,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-18-name-variant-tomek-pl",
+    "prompt": "Czym zajmuje się Tomek po pracy?",
+    "uiLang": "pl",
+    "expect": {
+      "mustMatchAny": [
+        "koszykówk",
+        "siatkówk",
+        "żegl",
+        "escape",
+        "fotograf",
+        "gotowan",
+        "n8n"
+      ],
+      "maxWords": 120
+    }
+  },
+  {
+    "id": "facts-19-different-person",
+    "prompt": "What are the hobbies of Thomas Edison?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "Edison"
+      ],
+      "mustMatchAny": [
+        "(don't|do not) have",
+        "can only help",
+        "only help",
+        "not something I"
+      ],
+      "mustNotMatch": [
+        "Edison (enjoys|likes|loves|plays|is into|has)",
+        "Edison.{0,20}(basketball|volleyball|sailing|photography|cooking)"
+      ],
+      "maxWords": 110,
+      "language": "en"
+    }
   }
 ]
