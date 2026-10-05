@@ -34,4 +34,4 @@ Every update has to preserve the user's existing progress: `localStorage` key na
 
 ## Outcome
 
-A working app used daily by its owner — now on version 4.0, supporting any language the user chooses to add (English, Italian and Norwegian are set up in the screenshots) across all 5 CEFR levels, with over 1,200 words across imported packs, direction switching (foreign → native or native → foreign), and audio playback for every card.
+A working app used daily by its owner — now on version 4.0, supporting any language the user chooses to add (English, Italian and Norwegian are set up in the screenshots) across all 5 CEFR levels, with word packs that can be imported in any size, direction switching (foreign → native or native → foreign), and audio playback for every card.

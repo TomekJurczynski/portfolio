@@ -33,7 +33,7 @@
   <p class="tag">Browser</p>
   <div class="box">
     <h3>Static Astro site + React chat island</h3>
-    <p>EN / PL pages, chat state machine, streaming parser, voice (Web Speech).</p>
+    <p>EN / PL pages, chat state machine, streaming parser, voice (mic: Web Speech).</p>
     <div class="chips"><span class="chip">Cosmos dark</span><span class="chip">WCAG 2.2 AA</span><span class="chip">no cookies</span></div>
   </div>
 
@@ -58,6 +58,13 @@
   <div class="box">
     <h3>Client turns markers into buttons</h3>
     <p>Checked against the whitelist: unknown ids are dropped, at most two actions per answer.</p>
+  </div>
+
+  <div class="arrow">read aloud: POST /api/speak · MP3 back<b>↕</b></div>
+
+  <div class="box accent">
+    <h3>Voice function → ElevenLabs</h3>
+    <p>Same guards, 120 req/h per IP. The vendor key stays server-side; if it fails, the browser voice reads the reply.</p>
   </div>
 </body>
 </html>

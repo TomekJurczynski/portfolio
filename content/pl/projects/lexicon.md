@@ -34,4 +34,4 @@ Każda aktualizacja musi zachować postęp użytkownika: nazwy kluczy w `localSt
 
 ## Wynik
 
-Działająca aplikacja używana codziennie przez właściciela — obecnie wersja 4.0, obsługująca dowolny język, który użytkownik doda (na zrzutach ekranu skonfigurowane są angielski, włoski i norweski) na wszystkich 5 poziomach CEFR, z ponad 1200 słówkami w zaimportowanych paczkach, przełącznikiem kierunku nauki (obcy → ojczysty lub odwrotnie) i odtwarzaniem wymowy dla każdej fiszki.
+Działająca aplikacja używana codziennie przez właściciela — obecnie wersja 4.0, obsługująca dowolny język, który użytkownik doda (na zrzutach ekranu skonfigurowane są angielski, włoski i norweski) na wszystkich 5 poziomach CEFR, z paczkami słówek, które można importować w dowolnej wielkości, przełącznikiem kierunku nauki (obcy → ojczysty lub odwrotnie) i odtwarzaniem wymowy dla każdej fiszki.

@@ -35,4 +35,4 @@ Po pierwszej instalacji na telefonie wyszły dwa realne problemy, naprawione w j
 
 ## Wynik
 
-Przetestowane, zainstalowane MVP działające na realnym telefonie z Androidem, z 19 przechodzącymi testami automatycznymi (w tym testem bezpieczeństwa migracji danych), zero backendu, zero kont i zero telemetrii — dokładnie zgodnie ze specyfikacją.
+Przetestowane, zainstalowane MVP działające na realnym telefonie z Androidem, z testami automatycznymi (w tym testem bezpieczeństwa migracji danych), zero backendu, zero kont i zero telemetrii — dokładnie zgodnie ze specyfikacją.

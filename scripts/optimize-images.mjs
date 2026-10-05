@@ -10,6 +10,8 @@ import path from 'node:path';
 const ROOT = 'public/images/projects';
 // Phone screenshots (1080 px wide) get 360/720; wide diagrams (workflow screenshot) also get 1120.
 const WIDTHS = [360, 720, 1120];
+// Flat-colour text diagrams survive a lower quality; the tall architecture diagram needs it to stay in budget.
+const QUALITY = { 'architecture.jpg': 64 };
 
 let totalIn = 0;
 let totalOut = 0;
@@ -23,7 +25,7 @@ for (const app of await readdir(ROOT)) {
     const { width: sourceWidth } = await sharp(src).metadata();
     for (const width of WIDTHS.filter((w) => w <= sourceWidth)) {
       const out = path.join(dir, file.replace(/\.jpg$/, `-${width}.webp`));
-      await sharp(src).resize({ width }).webp({ quality: 78 }).toFile(out);
+      await sharp(src).resize({ width }).webp({ quality: QUALITY[file] ?? 78 }).toFile(out);
       totalOut += (await stat(out)).size;
     }
   }

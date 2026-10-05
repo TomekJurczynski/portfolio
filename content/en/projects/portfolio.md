@@ -24,9 +24,9 @@ screenshots:
     width: 840
     height: 1120
   - src: "/images/projects/portfolio/architecture.jpg"
-    alt: "Architecture diagram: content is compiled at build time; the browser talks to a guarded Netlify Function, which calls Claude Haiku 4.5 and streams the reply back with markers that the client checks against a whitelist"
+    alt: "Architecture diagram: content is compiled at build time; the browser talks to a guarded Netlify Function, which calls Claude Haiku 4.5 and streams the reply back with markers that the client checks against a whitelist; a second function turns replies into speech through ElevenLabs"
     width: 1200
-    height: 1838
+    height: 2198
 ---
 
 ## Problem
@@ -47,7 +47,7 @@ Streaming: a single chunk can cut a marker in half, so the parser buffers an unf
 
 ## Quality gates
 
-Over 60 unit tests; about 50 end-to-end scenarios on desktop and a 390 px mobile viewport, with the chat stream mocked so they cost nothing; accessibility audits with axe against WCAG 2.2 AA in both languages, both themes and with the chat open, which caught and fixed low-contrast tokens at their source; Lighthouse at 100 in all four categories on desktop, with an LCP of 0.6 s; size budgets enforced in CI; and a 57-case evaluation suite that runs the real model through refusals, out-of-knowledge questions, languages, URL requests and prompt-injection attacks.
+Over 60 unit tests; about 50 end-to-end scenarios on desktop and a 390 px mobile viewport, with the chat stream mocked so they cost nothing; accessibility audits with axe against WCAG 2.2 AA in both languages, both themes and with the chat open, which caught and fixed low-contrast tokens at their source; Lighthouse at 100 in all four categories on desktop, with an LCP of 0.7 s; size budgets enforced in CI; and a 57-case evaluation suite that runs the real model through refusals, out-of-knowledge questions, languages, URL requests and prompt-injection attacks.
 
 ## Outcome
 

@@ -35,4 +35,4 @@ After the first real-world install on a phone, two issues surfaced and were fixe
 
 ## Outcome
 
-A tested, installed MVP running on a real Android phone, with 19 passing automated tests including the data-migration safety test, zero backend, zero accounts, and zero telemetry — exactly as specified.
+A tested, installed MVP running on a real Android phone, with automated tests including the data-migration safety test, zero backend, zero accounts, and zero telemetry — exactly as specified.

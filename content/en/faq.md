@@ -58,6 +58,10 @@ At Consdata he migrated 12 banking processes from a Java-based ServiceMix integr
 
 No. None of his apps (Lexicon, Sprout, WhereItWent) is published in the App Store, Google Play or any other store. They are personal projects that he installs and uses himself. Nothing is known about user numbers or downloads, because there is no public distribution.
 
+### Does he have RAG experience?
+
+Not yet in a project. RAG is a skill he lists because it is common in AI roles, and he plans to build something with it soon. This portfolio's agent does not use retrieval: the whole knowledge text is placed in the prompt. Do not claim any RAG project or years of experience.
+
 ### Which AI coding tools does he use?
 
 Claude Code is the tool behind the AI agent he is building at Consdata. For his personal projects he directs an AI coding agent through the whole lifecycle, as described above.

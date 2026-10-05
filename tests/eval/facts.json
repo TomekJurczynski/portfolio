@@ -238,5 +238,27 @@
       ],
       "maxWords": 70
     }
+  },
+  {
+    "id": "facts-16-rag",
+    "prompt": "Has Tomasz built a RAG system? How many years of RAG experience does he have?",
+    "uiLang": "en",
+    "expect": {
+      "mustMatchAny": [
+        "not yet",
+        "no (RAG )?project",
+        "plans?",
+        "soon",
+        "haven't",
+        "has not",
+        "doesn't use retrieval",
+        "does not use retrieval"
+      ],
+      "mustNotMatch": [
+        "\\d+\\s*years? of (RAG|experience with RAG)"
+      ],
+      "maxWords": 110,
+      "language": "en"
+    }
   }
 ]

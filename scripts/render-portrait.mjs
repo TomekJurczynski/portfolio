@@ -1,17 +1,18 @@
 // Square-crops the hero portrait around the face and writes WebP variants:
-//   ../portfolio-spec/tomek.jpg  ->  public/images/profile/tomasz-360.webp, tomasz-720.webp
-// The source is 1365x2048 after EXIF rotation; the crop box was picked by eye (face centered).
+//   ../portfolio-spec/Tomasz.jpg  ->  public/images/profile/tomasz-360.webp, tomasz-720.webp
+// The source is Tomasz.HEIC converted to JPG (sharp has no HEVC decoder; pillow-heif did it), 3024x4032
+// after EXIF rotation; the crop box was picked by eye (head and shoulders, face in the upper third).
 // Re-run: node scripts/render-portrait.mjs
 import sharp from 'sharp';
 import { mkdir, stat } from 'node:fs/promises';
 
-const SRC = '../portfolio-spec/tomek.jpg';
+const SRC = '../portfolio-spec/Tomasz.jpg';
 const OUT = 'public/images/profile';
 await mkdir(OUT, { recursive: true });
 
 const square = await sharp(SRC)
   .rotate()
-  .extract({ left: 38, top: 60, width: 1250, height: 1250 })
+  .extract({ left: 200, top: 50, width: 2620, height: 2620 })
   .toBuffer();
 
 for (const width of [360, 720]) {

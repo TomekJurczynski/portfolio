@@ -24,9 +24,9 @@ screenshots:
     width: 840
     height: 1120
   - src: "/images/projects/portfolio/architecture.jpg"
-    alt: "Schemat architektury: treści są kompilowane podczas budowy; przeglądarka rozmawia z zabezpieczoną funkcją Netlify, która woła Claude Haiku 4.5 i strumieniuje odpowiedź ze znacznikami sprawdzanymi względem białej listy"
+    alt: "Schemat architektury: treści są kompilowane podczas budowy; przeglądarka rozmawia z zabezpieczoną funkcją Netlify, która woła Claude Haiku 4.5 i strumieniuje odpowiedź ze znacznikami sprawdzanymi względem białej listy; druga funkcja zamienia odpowiedzi na mowę przez ElevenLabs"
     width: 1200
-    height: 1838
+    height: 2198
 ---
 
 ## Problem
@@ -47,7 +47,7 @@ Strumieniowanie: pojedyncza porcja może przeciąć znacznik w połowie, więc p
 
 ## Bramki jakości
 
-Ponad 60 testów jednostkowych; około 50 scenariuszy end-to-end na desktopie i w widoku mobilnym 390 px z zamockowanym strumieniem czatu, więc nic nie kosztują; audyty dostępności axe względem WCAG 2.2 AA w obu językach, obu motywach i z otwartym czatem, które wychwyciły i naprawiły u źródła zbyt niski kontrast tokenów; Lighthouse na poziomie 100 we wszystkich czterech kategoriach na desktopie, z LCP 0,6 s; budżety rozmiarów egzekwowane w CI; oraz zestaw 57 przypadków ewaluacyjnych, który przepuszcza prawdziwy model przez odmowy, pytania spoza bazy, języki, prośby o adresy URL i ataki prompt injection.
+Ponad 60 testów jednostkowych; około 50 scenariuszy end-to-end na desktopie i w widoku mobilnym 390 px z zamockowanym strumieniem czatu, więc nic nie kosztują; audyty dostępności axe względem WCAG 2.2 AA w obu językach, obu motywach i z otwartym czatem, które wychwyciły i naprawiły u źródła zbyt niski kontrast tokenów; Lighthouse na poziomie 100 we wszystkich czterech kategoriach na desktopie, z LCP 0,7 s; budżety rozmiarów egzekwowane w CI; oraz zestaw 57 przypadków ewaluacyjnych, który przepuszcza prawdziwy model przez odmowy, pytania spoza bazy, języki, prośby o adresy URL i ataki prompt injection.
 
 ## Wynik
 
