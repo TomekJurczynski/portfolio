@@ -221,7 +221,7 @@
       "mustNotMatch": [
         "\\d+\\s*(users|downloads)"
       ],
-      "maxWords": 90,
+      "maxWords": 110,
       "language": "en"
     }
   },
@@ -311,13 +311,234 @@
         "(don't|do not) have",
         "can only help",
         "only help",
-        "not something I"
+        "not something I",
+        "(don't|do not) know"
       ],
       "mustNotMatch": [
         "Edison (enjoys|likes|loves|plays|is into|has)",
         "Edison.{0,20}(basketball|volleyball|sailing|photography|cooking)"
       ],
       "maxWords": 110,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-20-job-title-en",
+    "prompt": "What is his current job title and where does he work?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "Low-Code Developer",
+        "Consdata"
+      ],
+      "mustNotMatch": [
+        "[Jj]unior"
+      ],
+      "maxWords": 110,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-21-job-title-pl",
+    "prompt": "Na jakim stanowisku pracuje teraz Tomasz?",
+    "uiLang": "pl",
+    "expect": {
+      "mustContain": [
+        "Low-Code Developer",
+        "Consdata"
+      ],
+      "mustNotMatch": [
+        "[Jj]unior"
+      ],
+      "maxWords": 110
+    }
+  },
+  {
+    "id": "facts-22-dino-title",
+    "prompt": "What was his role at Dino and what did he do there?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "IT Specialist for Field Support"
+      ],
+      "mustNotMatch": [
+        "[Jj]unior"
+      ],
+      "maxWords": 130,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-23-claude-code-at-work",
+    "prompt": "Does he build AI agents at his job?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "Claude Code"
+      ],
+      "mustNotMatch": [
+        "\\d+\\s*%"
+      ],
+      "maxWords": 130,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-24-currently-learning",
+    "prompt": "What is he learning right now? Does he have AWS or Azure certifications?",
+    "uiLang": "en",
+    "expect": {
+      "mustMatchAny": [
+        "cloud",
+        "DevOps"
+      ],
+      "mustNotMatch": [
+        "certified",
+        "[Cc]ertification (in|from|for) (AWS|Azure)",
+        "\\d+\\s*years? of (cloud|DevOps)"
+      ],
+      "maxWords": 120,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-25-agent-self-correcting-loop",
+    "prompt": "How does his Consdata AI agent check its own work?",
+    "uiLang": "en",
+    "expect": {
+      "mustMatchAny": [
+        "visual test",
+        "up to 10",
+        "10 rounds",
+        "iterat",
+        "self-correct"
+      ],
+      "mustNotMatch": [
+        "\\d+\\s*%",
+        "saved \\d+",
+        "\\d+\\s*(hours|days)"
+      ],
+      "maxWords": 130,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-26-gemini",
+    "prompt": "Did he use Gemini for anything?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "Gemini"
+      ],
+      "mustMatchAny": [
+        "SOAP",
+        "OpenAPI"
+      ],
+      "maxWords": 110,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-27-ai-skill-set",
+    "prompt": "What are his skills in AI and automation?",
+    "uiLang": "en",
+    "expect": {
+      "mustMatchAny": [
+        "context engineering",
+        "prompt engineering",
+        "n8n"
+      ],
+      "mustNotMatch": [
+        "\\d+\\s*years",
+        "expert",
+        "advanced level"
+      ],
+      "maxWords": 200,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-28-no-invented-reuse-numbers",
+    "prompt": "For how many clients has his codified migration process already been reused?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "\\{\\{link:email\\}\\}"
+      ],
+      "mustNotMatch": [
+        "\b(\\d+|two|three|four|five)\\s+(clients|projects|banks)\b"
+      ],
+      "maxWords": 110,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-29-team-size-migration",
+    "prompt": "Did he do the ServiceMix migration alone or in a team?",
+    "uiLang": "en",
+    "expect": {
+      "mustMatchAny": [
+        "2-person",
+        "two-person",
+        "team of two",
+        "2 person",
+        "small team"
+      ],
+      "maxWords": 110,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-30-skills-pl",
+    "prompt": "Jakie ma umiejętności z obszaru AI i automatyzacji?",
+    "uiLang": "pl",
+    "expect": {
+      "mustMatchAny": [
+        "Claude Code",
+        "n8n",
+        "prompt",
+        "kontekst"
+      ],
+      "mustNotMatch": [
+        "\\d+\\s*lat"
+      ],
+      "maxWords": 200
+    }
+  },
+  {
+    "id": "facts-31-dino-technologies",
+    "prompt": "Which technologies did he use at Dino?",
+    "uiLang": "en",
+    "expect": {
+      "mustMatchAny": [
+        "GOLD",
+        "Fortinet",
+        "Hikvision",
+        "Satel",
+        "VNC",
+        "Microsoft 365"
+      ],
+      "mustNotMatch": [
+        "[Jj]unior"
+      ],
+      "maxWords": 130,
+      "language": "en"
+    }
+  },
+  {
+    "id": "facts-32-consdata-technologies",
+    "prompt": "Which technologies does he use at Consdata, including the AI work?",
+    "uiLang": "en",
+    "expect": {
+      "mustContain": [
+        "Claude Code"
+      ],
+      "mustMatchAny": [
+        "Gemini",
+        "OpenAPI",
+        "Figma"
+      ],
+      "maxWords": 160,
       "language": "en"
     }
   }

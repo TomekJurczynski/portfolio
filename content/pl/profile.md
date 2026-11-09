@@ -15,9 +15,15 @@ stack:
   - WCAG / Dostępność
   - SQL
   - Git
+  - Claude Code
+  - Context engineering
+  - Prompt engineering
+  - n8n
+  - SOAP
+  - Design tokens
 ---
 
-Tomasz buduje skalowalne aplikacje biznesowe jako Junior Low-Code Developer w Consdata, pracując na platformie Eximee z projektowaniem procesów BPMN, integracjami REST i interfejsem zgodnym z WCAG.
+Tomasz buduje skalowalne aplikacje biznesowe jako Low-Code Developer w Consdata, pracując na platformie Eximee z projektowaniem procesów BPMN, integracjami REST i interfejsem zgodnym z WCAG.
 
 Wcześniej spędził trzy lata w EPAM Systems, usuwając problemy z dostępnością i ujednolicając design tokeny w dużych projektach, oraz dwa lata w Acturis Limited, budując automatyczne generowanie dynamicznych dokumentów dla oprogramowania ubezpieczeniowego.
 

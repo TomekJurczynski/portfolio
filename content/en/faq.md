@@ -1,6 +1,6 @@
 ### What does he do day to day?
 
-He works as a Junior Low-Code Developer at Consdata, building business applications on the Eximee platform: BPMN process modeling, JavaScript/HTML/CSS extensions, REST integrations, and WCAG-compliant UI.
+He works as a Low-Code Developer at Consdata, building business applications on the Eximee platform: BPMN process modeling, JavaScript/HTML/CSS extensions, REST integrations, and WCAG-compliant UI.
 
 ### What does "built by directing AI coding agents" actually mean?
 
@@ -36,7 +36,7 @@ English at C1 level, and German and Italian at A1 level. Polish is his native la
 
 ### Which technologies has he used in his jobs?
 
-At Consdata: the Eximee platform, JavaScript, HTML, CSS, BPMN/BPMS, Camunda, REST APIs, SOAP, Jira, Confluence, Git, GitLab, Linux and Kibana. At EPAM Systems: JavaScript, Dart, TypeScript, SCSS and HTML. At Acturis: XSLT, XML, HTML, CSS and SQL. His CV also lists Angular (Angular Material, RxJs, NgRx), SQL/MySQL and Agile/Scrum/Kanban among his hard skills; nothing more is known about how deeply he has used them, so do not claim projects or seniority with them.
+At Consdata: the Eximee platform, JavaScript, HTML, CSS, BPMN/BPMS, Camunda, REST APIs, SOAP, Jira, Confluence, Git, GitLab, Linux and Kibana, plus Claude Code, Gemini, OpenAPI, Figma and design tokens. At EPAM Systems: JavaScript, Dart, TypeScript, SCSS and HTML. At Acturis: XSLT, XML, HTML, CSS and SQL. At Dino S.A.: GOLD System, POS systems, Microsoft 365, Google Workspace, Hikvision CCTV, Satel, Remote Desktop VNC and Fortinet. His CV also lists Angular (Angular Material, RxJs, NgRx), SQL/MySQL and Agile/Scrum/Kanban among his hard skills; nothing more is known about how deeply he has used them, so do not claim projects or seniority with them.
 
 ### What are his hobbies / interests outside work?
 
@@ -52,7 +52,7 @@ Yes. At Consdata he is building an AI agent with Claude Code that checks a bank'
 
 ### What integration or migration experience does he have?
 
-At Consdata he migrated 12 banking processes from a Java-based ServiceMix integration to BPMS processes using soap-proxy. The processes call soap-proxy through JavaScript handlers written in Eximee script code. He wrote the soap-proxy configuration (openapi.yaml and soapproxy.yaml) and the SOAP envelope templates. Nothing more is known about the technical details beyond this, and the client is not named.
+At Consdata he migrated 12 banking processes from a Java-based ServiceMix integration to BPMS processes using soap-proxy. The processes call soap-proxy through JavaScript handlers written in Eximee script code. He wrote the soap-proxy configuration (openapi.yaml and soapproxy.yaml) and the SOAP envelope templates. He did this in a 2-person team, which retired outdated technology. He first analyzed the existing Java integration code to reconstruct its logic, and used Gemini to accelerate generating the SOAP envelopes, scripts and OpenAPI specs. Nothing more is known about the technical details beyond this, and the client is not named.
 
 ### Are his apps available in an app store?
 
@@ -61,6 +61,26 @@ No. None of his apps (Lexicon, Sprout, WhereItWent) is published in the App Stor
 ### Does he have RAG experience?
 
 Not yet in a project. RAG is a skill he lists because it is common in AI roles, and he plans to build something with it soon. This portfolio's agent does not use retrieval: the whole knowledge text is placed in the prompt. Do not claim any RAG project or years of experience.
+
+### What is he currently learning?
+
+He is always looking to grow and is currently expanding his knowledge in cloud technologies, DevOps and AI-driven solutions. Nothing more is known about how deep this goes, so do not claim any cloud or DevOps project, certification, platform or years of experience.
+
+### How does he describe his profile today?
+
+As a Low-Code Developer with an AI automation focus. He builds AI agents and AI-assisted workflows with Claude Code in a banking environment and designs reusable, rule-driven automation: codified migration rules, context engineering and self-correcting test loops. His background is in front-end development, accessibility (WCAG) and design tokens.
+
+### What are his skills by area?
+
+AI and automation: Claude Code, AI agents, agentic coding, context engineering, prompt engineering, n8n and automated visual testing. Low-code and integration: Eximee, BPMN/BPMS, Camunda, REST and SOAP. Front-end: JavaScript, TypeScript, HTML, CSS/SCSS, Angular, WCAG and design tokens. Tools: Git, GitLab, Jira, Confluence and SQL. Nothing is known about skill levels or years per skill, so do not state any.
+
+### How does the AI agent at Consdata work in more detail?
+
+Beyond the UI audit described in the entry about his professional AI work, he codified the migration rules and patterns per client in the team repository, so the process can be reused in further projects with minimal human input. He also designed a self-correcting loop: the agent runs visual tests in the browser on test environments and iterates (changes, tests, fixes) for up to 10 rounds. Do not add results, savings or numbers beyond these; the status of the project is described in the entry about his professional AI work.
+
+### Does he use Gemini or other AI tools besides Claude Code?
+
+At Consdata he used Gemini to accelerate generating SOAP envelopes, scripts and OpenAPI specs during the ServiceMix migration. His experiments with AI tools outside work are described in the entry about his hobbies. Nothing more is known about other tools.
 
 ### Which AI coding tools does he use?
 

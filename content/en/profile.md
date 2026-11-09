@@ -15,9 +15,15 @@ stack:
   - WCAG / Accessibility
   - SQL
   - Git
+  - Claude Code
+  - Context engineering
+  - Prompt engineering
+  - n8n
+  - SOAP
+  - Design tokens
 ---
 
-Tomasz builds scalable business applications as a Junior Low-Code Developer at Consdata, working on the Eximee platform with BPMN process design, REST integrations and WCAG-compliant UI.
+Tomasz builds scalable business applications as a Low-Code Developer at Consdata, working on the Eximee platform with BPMN process design, REST integrations and WCAG-compliant UI.
 
 Before that, he spent three years at EPAM Systems remediating accessibility issues and standardizing design tokens across large-scale projects, and two years at Acturis Limited building dynamic, data-driven document generation for insurance software.
 

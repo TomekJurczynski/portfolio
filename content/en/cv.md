@@ -1,7 +1,7 @@
 ---
 experience:
   - company: "Consdata"
-    role: "Junior Low-Code Developer"
+    role: "Low-Code Developer"
     start: "2026-01"
     end: "present"
     bullets:
@@ -15,9 +15,12 @@ experience:
       - "Supporting business users and translating functional requirements into technical solutions"
       - "Participating in testing and production releases"
       - "Migrated 12 banking processes off a Java-based ServiceMix integration to BPMS processes using soap-proxy: JavaScript handlers in Eximee script code call soap-proxy, which I configured (openapi.yaml, soapproxy.yaml) together with the SOAP envelope templates"
+      - "In this migration he worked in a 2-person team, retiring outdated technology: analyzed the existing Java integration code to reconstruct its logic and used Gemini to accelerate generating SOAP envelopes, scripts and OpenAPI specs"
       - "Building an AI agent with Claude Code that audits a bank's UI artifacts across 6 processes against its new Figma design: it finds inconsistent, unused, duplicated and hardcoded styles and replaces them with design tokens, handling artifacts shared between processes"
+      - "Codified migration rules and patterns per client in the team repository, making the process reusable for further projects with minimal human input"
+      - "Designed a self-correcting loop for the agent: it runs visual tests in the browser on test environments and iterates (changes, tests, fixes) for up to 10 rounds"
   - company: "Dino S.A."
-    role: "Junior IT Specialist for Field Support"
+    role: "IT Specialist for Field Support"
     start: "2025-04"
     end: "2025-12"
     bullets:
@@ -34,6 +37,7 @@ experience:
       - "Created design tokens to simplify WCAG integration in code and standardize styles"
       - "Remediated 100+ accessibility issues across multiple projects"
       - "Partnered with product managers to streamline accessibility and standardization workflows"
+      - "Worked directly with the client on troubleshooting and improvements"
   - company: "Acturis Limited"
     role: "Developer"
     start: "2019-09"
@@ -43,6 +47,8 @@ experience:
       - "Designed XML schemas compatible with the company's insurance data models"
       - "Established reusable XSLT libraries for frequently used transformations"
       - "Trained developers, business analysts and QA testers on XSLT best practices"
+      - "Served insurance brokers in the UK, Canada, Germany and France, working closely with QA and business analysts"
+      - "Created documentation and technical guides for a newly formed team"
 education:
   - school: "Wrocław University of Science and Technology"
     degree: "Engineer's Degree, Control Engineering and Robotics"

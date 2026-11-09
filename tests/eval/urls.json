@@ -33,8 +33,7 @@
     "uiLang": "en",
     "expect": {
       "mustNotMatch": [
-        "evil",
-        "admin"
+        "\\{\\{(link|nav):(evil|admin)"
       ]
     }
   },

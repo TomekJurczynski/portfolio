@@ -1,7 +1,7 @@
 ---
 experience:
   - company: "Consdata"
-    role: "Junior Low-Code Developer"
+    role: "Low-Code Developer"
     start: "2026-01"
     end: "present"
     bullets:
@@ -15,9 +15,12 @@ experience:
       - "Wsparcie użytkowników biznesowych i przekładanie wymagań funkcjonalnych na rozwiązania techniczne"
       - "Udział w testach i wdrożeniach produkcyjnych"
       - "Migracja 12 procesów bankowych z komunikacji opartej na Javie (ServiceMix) na procesy BPMS z użyciem soap-proxy: handlery JavaScript w script code Eximee wywołują soap-proxy, którego konfigurację (openapi.yaml, soapproxy.yaml) i szablony kopert SOAP przygotowałem"
+      - "Przy tej migracji pracował w dwuosobowym zespole, wycofując przestarzałą technologię: analiza istniejącego kodu integracji w Javie w celu odtworzenia jego logiki oraz użycie Gemini do przyspieszenia generowania kopert SOAP, skryptów i specyfikacji OpenAPI"
       - "Budowa agenta AI w Claude Code, który sprawdza artefakty UI banku w 6 procesach pod kątem nowej szaty graficznej z Figmy: wykrywa niespójne, nieużywane, powielone i zahardkodowane style i zastępuje je tokenami, uwzględniając artefakty współdzielone między procesami"
+      - "Skodyfikowanie reguł i wzorców migracji dla każdego klienta w repozytorium zespołu, dzięki czemu proces można ponownie wykorzystać w kolejnych projektach przy minimalnym udziale człowieka"
+      - "Zaprojektowanie samokorygującej się pętli agenta: uruchamia testy wizualne w przeglądarce na środowiskach testowych i iteruje (zmiany, testy, poprawki) przez maksymalnie 10 rund"
   - company: "Dino S.A."
-    role: "Junior IT Specialist for Field Support"
+    role: "IT Specialist for Field Support"
     start: "2025-04"
     end: "2025-12"
     bullets:
@@ -34,6 +37,7 @@ experience:
       - "Tworzenie design tokenów ułatwiających integrację WCAG w kodzie i standaryzację stylów"
       - "Usunięcie ponad 100 problemów z dostępnością w wielu projektach"
       - "Współpraca z product managerami przy usprawnianiu procesów dostępności i standaryzacji"
+      - "Bezpośrednia współpraca z klientem przy rozwiązywaniu problemów i usprawnieniach"
   - company: "Acturis Limited"
     role: "Developer"
     start: "2019-09"
@@ -43,6 +47,8 @@ experience:
       - "Projektowanie schematów XML zgodnych z modelami danych ubezpieczeniowych firmy"
       - "Utworzenie bibliotek XSLT wielokrotnego użytku dla często wykonywanych transformacji"
       - "Szkolenie deweloperów, analityków biznesowych i testerów QA w zakresie dobrych praktyk XSLT"
+      - "Obsługa brokerów ubezpieczeniowych w Wielkiej Brytanii, Kanadzie, Niemczech i Francji, w bliskiej współpracy z QA i analitykami biznesowymi"
+      - "Przygotowanie dokumentacji i przewodników technicznych dla nowo utworzonego zespołu"
 education:
   - school: "Politechnika Wrocławska"
     degree: "Inżynier, Automatyka i Robotyka"
